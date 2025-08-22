@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
 
-  // Titles relevant to a pharmacy
+
   const titles = useMemo(
     () => ["Trusted", "Reliable", "Professional", "Friendly", "Smart"],
     []
@@ -21,10 +21,10 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full bg-white">
-      
-      <div className="container mx-auto">
-        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+   <div className="w-full bg-white border-black border-2">
+  <div className="container mx-auto px-4">
+    <div className="flex gap-8 py-20  lg:py-32 items-center justify-center flex-col">
+
           <div>
             <Button variant="secondary" size="sm" className="gap-2">
               Read our latest health tips <MoveRight className="w-4 h-4" />

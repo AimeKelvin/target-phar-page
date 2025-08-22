@@ -44,7 +44,8 @@ function TypingAnimation() {
 
 function Hero3() {
     return (
-        <section className="bg-white min-h-[60vh] flex gap-4 flex-col items-center justify-center px-6 py-16">
+        <section className="bg-white w-full h-[100vh] flex gap-4 flex-col items-center justify-center px-6 py-24">
+
             <div className="max-w-2xl w-full text-center space-y-6">
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}

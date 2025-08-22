@@ -1,6 +1,9 @@
 'use client';
 
-import HeroWithLinks, { LinkItem } from '@/components/Hero1';
+import Herosection, { LinkItem } from '@/components/Hero1';
+import Hero3 from '@/components/Hero3';
+import { Hero } from '@/components/Hero-2';
+
 
 const linkData: LinkItem[] = [
   { title: 'Wholesale', href: '/wholesale' },
@@ -11,12 +14,15 @@ const linkData: LinkItem[] = [
 
 export default function Page() {
   return (
-    <main className="py-24 flex flex-col items-center justify-start min-h-screen backdrop-blur-xl bg-white/40 px-6 md:px-12 shadow-xl w-full text-center">
-      <HeroWithLinks
+    <main className="flex flex-col items-center justify-start w-full  text-center py-12">
+      <Herosection
         title="TARGET COMPLEX"
-        description="Providing trusted healthcare products, expert advice, and fast service to keep you and your family healthy."
+        description="Providing trusted healthcare products, expert advice, and fast, reliable service to support the well-being of you and your family. Whether it's wholesale supplies, pharmacy needs, clinical care, or manufacturing, we’re here to ensure quality and care at every step."
         links={linkData}
       />
+      <Hero3 />
+      <Hero />
     </main>
   );
 }
+

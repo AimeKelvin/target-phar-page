@@ -21,7 +21,6 @@ interface HeroWithLinksProps {
   links: LinkItem[];
 }
 
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -29,20 +28,20 @@ const fadeInUp: Variants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut' as const, 
+      ease: 'easeOut' as const,
     },
   },
 };
 
-export default function HeroWithLinks({ title, description, links }: HeroWithLinksProps) {
+export default function Herosection({ title, description, links }: HeroWithLinksProps) {
   return (
-    <div className="flex flex-col items-center text-center px-4">
+    <div className="flex h-[100vh] flex-col items-center text-center px-4 sm:px-6 md:px-8 lg:px-12 w-full mx-auto">
 
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' as const }} // <-- Fix here
-        className={`font-extrabold mb-[70px] text-5xl md:text-7xl text-gray-900 ${monomaniac.className}`}
+        transition={{ duration: 1, ease: 'easeOut' as const }}
+        className={`font-bold mb-20 sm:mb-20 md:mb-24 text-3xl sm:text-4xl md:text-4xl lg:text-7xl text-gray-900 ${monomaniac.className}`}
       >
         {title}
       </motion.h1>
@@ -51,14 +50,13 @@ export default function HeroWithLinks({ title, description, links }: HeroWithLin
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
-        className="text-[20px] text-gray-600 max-w-3xl mb-[170px]"
+        className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mb-20 sm:mb-20 md:mb-32 px-2"
       >
         {description}
       </motion.p>
 
-
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-6xl"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full max-w-6xl px-2"
         initial="hidden"
         animate="visible"
         variants={{
@@ -79,7 +77,7 @@ export default function HeroWithLinks({ title, description, links }: HeroWithLin
           >
             <Link
               href={href}
-              className="block bg-white/70 hover:bg-white transition-all duration-300 border border-black/10 backdrop-blur-lg shadow-md rounded-xl px-10 py-7 text-center text-xl font-semibold text-gray-800 hover:text-black"
+              className="block bg-white/70 hover:bg-white transition-all duration-300 border border-black/10 backdrop-blur-lg shadow-md rounded-xl px-6 sm:px-10 py-5 sm:py-7 text-center text-base sm:text-lg font-semibold text-gray-800 hover:text-black"
             >
               {title}
             </Link>

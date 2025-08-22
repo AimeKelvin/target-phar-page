@@ -1,7 +1,9 @@
-import HeroSection from "@/components/blocks/hero-section-5";
+import React from 'react'
 
-export default function Home() {
+function page() {
   return (
-    <HeroSection />
-  );
+    <div>Hello World</div>
+  )
 }
+
+export default page

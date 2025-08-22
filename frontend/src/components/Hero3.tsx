@@ -48,7 +48,7 @@ function TypingAnimation() {
 
 function Hero3() {
     return (
-        <section className="bg-gradient-to-br from-gray-50 items-center to-gray-50 grid grid-cols-1 md:grid-cols-2 py-24 gap-6 p-6 md:p-12 lg:p-16 h-[100vh]">
+        <section className="w-full bg-gradient-to-br from-gray-50 items-center to-gray-50 grid grid-cols-1 md:grid-cols-2 py-24 gap-6 p-6 md:p-12 lg:p-16 h-[100vh]">
             <div className="max-w-lg w-full text-left">
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}

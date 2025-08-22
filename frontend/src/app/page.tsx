@@ -6,7 +6,6 @@ function page() {
   return (
     <div>
       <Hero3 />
-      <Hero />
     </div>
   )
 }

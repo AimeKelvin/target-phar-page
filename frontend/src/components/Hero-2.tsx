@@ -21,9 +21,9 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-   <div className="w-full bg-white border-black border-2">
-  <div className="container mx-auto px-4">
-    <div className="flex gap-8 py-20  lg:py-32 items-center justify-center flex-col">
+    <div className="w-full bg-white border-black border-2">
+      <div className="container mx-auto px-4">
+        <div className="flex gap-8 py-20  lg:py-32 items-center justify-center flex-col">
 
           <div>
             <Button variant="secondary" size="sm" className="gap-2">

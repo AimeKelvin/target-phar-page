@@ -1,6 +1,7 @@
 'use client';
 
-import Herosection, { LinkItem } from '@/components/Hero1';
+import Description from '@/components/blocks/description';
+import Herosection, { LinkItem } from '@/components/blocks/Hero1';
 import { FiPackage, FiPlusCircle, FiHome, FiCpu, FiTool } from 'react-icons/fi';
 
 const linkData: LinkItem[] = [
@@ -13,6 +14,7 @@ const linkData: LinkItem[] = [
 
 export default function Page() {
   return (
+    <>
     <main className="flex flex-col items-center justify-start w-full text-center py-12">
       <Herosection
         title="TARGET COMPLEX"
@@ -20,5 +22,7 @@ export default function Page() {
         links={linkData}
       />
     </main>
+    <Description />
+    </>
   );
 }

@@ -131,7 +131,7 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
       </div>
 
       {/* Active card description */}
-      <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 mt-8 transition-all duration-500 flex flex-col justify-center">
+      <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800/90 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 mt-8 transition-all duration-500 flex flex-col justify-center">
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           {products[activeIndex].type}
         </h3>

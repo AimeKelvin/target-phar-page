@@ -40,7 +40,7 @@ const fadeInUp: Variants = {
   },
 };
 
-export default function Herosection({ title, description, links }: HeroWithLinksProps) {
+export default function Hero({ title, description, links }: HeroWithLinksProps) {
   const [titleNumber, setTitleNumber] = useState(0);
   const [isScrolledPastTitle, setIsScrolledPastTitle] = useState(false);
   const heroTitleRef = useRef<HTMLHeadingElement | null>(null);
@@ -136,7 +136,7 @@ export default function Herosection({ title, description, links }: HeroWithLinks
 
 
         <motion.div className="w-full space-y-6">
-          {/* Top Row: 4 items */}
+
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full"
             initial="hidden"
@@ -168,7 +168,7 @@ export default function Herosection({ title, description, links }: HeroWithLinks
             ))}
           </motion.div>
 
-          {/* Bottom Row: 2 items centered */}
+
           <motion.div
             className="flex justify-center gap-6 flex-wrap"
             initial="hidden"

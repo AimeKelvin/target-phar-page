@@ -4,6 +4,8 @@ import { FiPackage, FiPlusCircle, FiHome, FiCpu, FiTool } from 'react-icons/fi';
 import ProductCarousel, { Product } from '@/components/blocks/Recentproducts';
 import Description from '@/components/blocks/description';
 import Hero , { LinkItem } from '@/components/blocks/Hero';
+import footer from '@/components/blocks/footer';
+
 const linkData: LinkItem[] = [
   { title: 'Wholesale', href: '/wholesale', icon: FiPackage },
   { title: 'Pharmacy', href: '/pharmacy', icon: FiPlusCircle },

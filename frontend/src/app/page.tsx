@@ -4,7 +4,7 @@ import { FiPackage, FiPlusCircle, FiHome, FiCpu, FiTool } from 'react-icons/fi';
 import ProductCarousel, { Product } from '@/components/blocks/Recentproducts';
 import Description from '@/components/blocks/description';
 import Hero , { LinkItem } from '@/components/blocks/Hero';
-import footer from '@/components/blocks/footer';
+import Footer from '@/components/blocks/Footer';
 
 const linkData: LinkItem[] = [
   { title: 'Wholesale', href: '/wholesale', icon: FiPackage },
@@ -83,6 +83,7 @@ export default function Page() {
         <ProductCarousel products={products} />
       </section>
         <Description />
+        <Footer/>
     </main>
 
   );

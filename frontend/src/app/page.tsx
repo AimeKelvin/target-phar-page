@@ -3,7 +3,7 @@
 import { FiPackage, FiPlusCircle, FiHome, FiCpu, FiTool } from 'react-icons/fi';
 import ProductCarousel, { Product } from '@/components/blocks/Recentproducts';
 import Description from '@/components/blocks/description';
-import Hero , { LinkItem } from '@/components/blocks/Hero';
+import Hero, { LinkItem } from '@/components/blocks/Hero';
 import Footer from '@/components/blocks/Footer';
 
 const linkData: LinkItem[] = [
@@ -82,8 +82,10 @@ export default function Page() {
         </h2>
         <ProductCarousel products={products} />
       </section>
-        <Description />
-        <Footer/>
+      <Description />
+      <footer className='w-full mt-20'>
+        <Footer />
+      </footer>
     </main>
 
   );

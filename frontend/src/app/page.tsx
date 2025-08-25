@@ -69,7 +69,7 @@ const products: Product[] = [
 
 export default function Page() {
   return (
-    <main className="flex flex-col items-center justify-start w-full text-center md:py-0 py-12 space-y-8 min-h-screen">
+    <main className="flex flex-col items-center justify-start w-full text-center md:py-0 pt-12 space-y-8 min-h-screen">
       <Hero
         title="TARGET COMPLEX"
         description="Providing trusted healthcare products, expert advice, and fast, reliable service to support the well‑being of you and your family. Whether it's wholesale supplies, pharmacy needs, clinical care, or manufacturing, we’re here to ensure quality and care at every step."
@@ -83,7 +83,7 @@ export default function Page() {
         <ProductCarousel products={products} />
       </section>
       <Description />
-      <footer className='w-full mt-20'>
+      <footer className='w-full mt-10'>
         <Footer />
       </footer>
     </main>

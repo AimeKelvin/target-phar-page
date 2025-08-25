@@ -138,7 +138,7 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
         <motion.div className="w-full space-y-6">
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 w-full"
             initial="hidden"
             animate="visible"
             variants={{
@@ -155,13 +155,13 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full"
+                className=""
               >
                 <Link
                   href={href}
-                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-7 py-6 text-center text-base sm:text-lg font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
+                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-3 py-6 text-center text-sm sm:text-sm font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
                 >
-                  <Icon className="mr-3 w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  <Icon className="mr-2 w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                   {title}
                 </Link>
               </motion.div>
@@ -191,7 +191,7 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
               >
                 <Link
                   href={href}
-                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-7 py-6 text-center text-base sm:text-lg font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
+                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-7 py-6 text-center text-base sm:text-sm font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
                 >
                   <Icon className="mr-3 w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                   {title}

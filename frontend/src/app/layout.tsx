@@ -1,7 +1,7 @@
 'use client';
 
 import { Inter } from 'next/font/google';
-import './globals.css'
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -11,17 +11,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} relative w-full min-h-screen`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} relative w-full min-h-screen bg-white text-gray-900`}>
 
-       <div className="fixed inset-0 z-0 bg-gradient-to-bl  dark:from-green-900 dark:via-gray-900 dark:to-emerald-950 bg-[length:400%_400%] transition-colors duration-500" />
+        {/* Soft background gradient */}
+        <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#f9fef9] via-white to-[#eef5ea]" />
 
-        <div
-          className="fixed inset-0 z-10 pointer-events-none opacity-20"
-          
-        />
+        {/* Optional texture overlay */}
+        <div className="fixed inset-0 z-10 pointer-events-none opacity-[0.03] bg-[url('/noise.png')] bg-repeat" />
 
-
+        {/* Main content */}
         <div className="relative z-20">{children}</div>
       </body>
     </html>

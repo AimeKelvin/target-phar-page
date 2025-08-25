@@ -25,3 +25,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer utilities {
+  .animate-gradient {
+    animation: gradientBG 15s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}

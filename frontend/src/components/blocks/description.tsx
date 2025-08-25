@@ -1,81 +1,96 @@
-import { FC } from "react";
+'use client';
+
+import { FC } from 'react';
+import { Inter } from 'next/font/google';
+import RevealOnScroll from '@/utils/RevealOnScroll';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 const Description: FC = () => {
   return (
-    <section className="relative w-full min-h-screen text-white px-6 py-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        {/* Left Column - Our Story */}
-        <div className="md:col-span-1">
-          <h2 className="text-2xl font-bold tracking-wide mb-4 relative">
-            OUR STORY
-            <span className="block w-14 h-[3px] bg-emerald-400 mt-2"></span>
-          </h2>
-          <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-            Target complex started 2012 in Musanze city, Rwanda. It started with a
-            retail pharmacy (Iraguha pharmacy) with 3 employees, which is a retail
-            store selling prescription and non-prescription drugs to the general public.
-            <br /><br />
-            With excellent service to the public and hardworking, Iraguha pharmacy
-            became the most known pharmacy in the whole city, and this led to the
-            opening of a para-pharmaceutical company (health target) in 2018,
-            which is a retail store selling all non-medicinal products sold in pharmacies.
-            <br /><br />
-            Through the popularity of Iraguha pharmacy and excellent service it
-            also became popular in the whole city. The success of both the
-            parapharmacy and retail pharmacy led to the opening of a wholesale
-            company (target para and pharmaceutical wholesale ltd), in the capital
-            city of Rwanda Kigali.
-            <br /><br />
-            The wholesale company supplies para and pharmaceutical products to the
-            whole country. With the success of the three we are intending to open
-            a clinic and a manufacturing company in the coming days.
-          </p>
-        </div>
+    <section className={`relative w-full min-h-screen px-6 py-20 bg-white text-gray-900 ${inter.className}`}>
+      
+      <RevealOnScroll>
+        <h2 className="text-2xl md:text-3xl text-center mb-16 font-extrabold text-[#207ae1]">
+          ABOUT COMPLEX
+        </h2>
+      </RevealOnScroll>
 
-        {/* Right Column - Cards */}
-        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="bg-gray-800/90 shadow-lg rounded-xl p-6 border border-emerald-600">
-            <h3 className="text-lg font-bold text-emerald-400 mb-2">MISSION</h3>
-            <p className="text-gray-300 text-sm">
-              To become worldwide’s leading private health company by providing
-              healthy and quality life for patients/clients.
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
+
+        {/* OUR STORY */}
+        <RevealOnScroll>
+          <div className="flex-1">
+            <h2 className="text-2xl font-extrabold tracking-wide mb-4 text-[#6fab1d]">
+              OUR STORY
+              <span className="block w-14 h-[3px] bg-[#6fab1d] mt-2"></span>
+            </h2>
+            <p className="leading-relaxed text-sm md:text-base text-gray-800">
+              Target complex started in 2012 in Musanze city, Rwanda. It began with a retail pharmacy (Iraguha Pharmacy) with 3 employees, selling prescription and non-prescription drugs to the public.
+              <br /><br />
+              Thanks to excellent public service and dedication, Iraguha Pharmacy became the most known pharmacy in the city. This led to the opening of a para-pharmaceutical company (Health Target) in 2018, selling non-medicinal products found in pharmacies.
+              <br /><br />
+              With growing popularity and trust, the success of both the parapharmacy and retail pharmacy inspired the launch of a wholesale company (Target Para and Pharmaceutical Wholesale Ltd) in Kigali.
+              <br /><br />
+              Today, the wholesale company supplies para and pharmaceutical products across Rwanda. With continued success, we aim to open a clinic and a manufacturing company in the near future.
             </p>
           </div>
+        </RevealOnScroll>
 
-          <div className="bg-gray-800/90 shadow-lg rounded-xl p-6 border border-emerald-600">
-            <h3 className="text-lg font-bold text-emerald-400 mb-2">OUR GOALS</h3>
-            <ul className="text-gray-300 text-sm list-disc pl-5 space-y-1">
-              <li>Improve access to quality, safety, and efficacy health commodities.</li>
-              <li>Life saving and life enhancing through best quality products.</li>
-              <li>Develop enduring partnerships with different entities or suppliers.</li>
-              <li>Deliver consistently great customer-centered service everywhere for all.</li>
-            </ul>
+        {/* INFO CARDS */}
+        <RevealOnScroll>
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'MISSION',
+                content:
+                  'To become the world’s leading private health company by providing a healthy and quality life for patients and clients.',
+              },
+              {
+                title: 'OUR GOALS',
+                content: (
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Improve access to quality, safe, and effective health commodities.</li>
+                    <li>Save and enhance lives through the best quality products.</li>
+                    <li>Develop long-term partnerships with suppliers and entities.</li>
+                    <li>Deliver consistent, client-centered service for all, everywhere.</li>
+                  </ul>
+                ),
+              },
+              {
+                title: 'OUR MISSION',
+                content:
+                  'We embrace modern, convenient, and innovative healthcare solutions in everything we do.',
+              },
+              {
+                title: 'OUR VALUES',
+                content:
+                  'Patient-centered care, Competency, Community-mindedness, Leadership, Collaboration, Excellence, Professionalism, Continuous improvement.',
+              },
+              {
+                title: 'OUR SLOGAN',
+                content:
+                  'Access to quality health commodities — life and wealth always, everywhere, for all.',
+                fullWidth: true,
+              },
+            ].map(({ title, content, fullWidth }, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-xl border-[2px] border-[#6fab1d] p-6 shadow-[0_6px_20px_rgba(0,0,0,0.05)] transition-all ${
+                  fullWidth ? 'sm:col-span-2' : ''
+                }`}
+              >
+                <h3 className="text-lg font-bold text-[#6fab1d] mb-3">{title}</h3>
+                <div className="text-sm text-gray-800">{content}</div>
+              </div>
+            ))}
           </div>
+        </RevealOnScroll>
 
-          <div className="bg-gray-800/90 shadow-lg rounded-xl p-6 border border-emerald-600">
-            <h3 className="text-lg font-bold text-emerald-400 mb-2">OUR MISSION</h3>
-            <p className="text-gray-300 text-sm">
-              In our work we use only the most modern, convenient, and
-              innovative solutions.
-            </p>
-          </div>
-
-          <div className="bg-gray-800/90 shadow-lg rounded-xl p-6 border border-emerald-600">
-            <h3 className="text-lg font-bold text-emerald-400 mb-2">OUR VALUES</h3>
-            <p className="text-gray-300 text-sm">
-              Patient-centered care, Competency, Community-minded, Leadership,
-              Collaboration, Excellence, Professionalism, Continuous improvement.
-            </p>
-          </div>
-
-          <div className="bg-gray-800/90 shadow-lg rounded-xl p-6 border border-emerald-600 sm:col-span-2">
-            <h3 className="text-lg font-bold text-emerald-400 mb-2">OUR SLOGAN</h3>
-            <p className="text-gray-300 text-sm">
-              Access to quality health commodities — life and wealth always,
-              everywhere, for all.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );

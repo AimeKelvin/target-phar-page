@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import RevealOnScroll from '@/utils/RevealOnScroll';
 
 export interface Product {
   id: number;
@@ -40,7 +41,7 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
 
   return (
     <>
-      {/* Carousel container */}
+    <RevealOnScroll>
       <div className="relative flex justify-center mb-36 items-end space-x-[-100px] select-none">
         {visibleIndices.map((idx, position) => {
           const product = products[idx];
@@ -89,10 +90,10 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
                 zIndex,
                 boxShadow: isActive ? 'none' : '0 5px 10px rgba(0,0,0,0.1)',
                 transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                background: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+                background: isActive ? 'rgba(255, 255, 255, 0.55)' : 'transparent',
                 backdropFilter: isActive ? 'blur(10px)' : 'none',
                 WebkitBackdropFilter: isActive ? 'blur(10px)' : 'none',
-                border: isActive ? '1.5px solid grey' : 'transparent',
+                border: isActive ? '1.5px solid #6fab1d' : 'transparent',
                 padding: isActive ? '12px' : '0px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -121,7 +122,7 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
                 />
               </div>
               {isActive && (
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate w-full">
+                <h3 className="text-lg font-semibold text-gray-900 truncate w-full">
                   {product.name}
                 </h3>
               )}
@@ -129,16 +130,18 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
           );
         })}
       </div>
+      </RevealOnScroll>
 
-      {/* Active card description */}
-      <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800/90 rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 mt-8 transition-all duration-500 flex flex-col justify-center">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+      <RevealOnScroll>
+      <div className="max-w-3xl mx-auto p-6 rounded-xl border-2 border-[#6fab1d] mt-8 transition-all duration-500 flex flex-col justify-center">
+        <h3 className="text-xl font-semibold text-gray-900  mb-4">
           {products[activeIndex].type}
         </h3>
-        <p className="text-gray-800 dark:text-gray-200 text-base leading-relaxed text-center">
+        <p className="text-gray-800  text-base leading-relaxed text-center">
           {products[activeIndex].details}
         </p>
       </div>
+      </RevealOnScroll>
     </>
   );
 }

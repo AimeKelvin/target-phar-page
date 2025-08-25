@@ -5,6 +5,8 @@ import ProductCarousel, { Product } from '@/components/blocks/Recentproducts';
 import Description from '@/components/blocks/description';
 import Hero, { LinkItem } from '@/components/blocks/Hero';
 import Footer from '@/components/blocks/Footer';
+import Blog from '@/components/blocks/Blog';
+import RevealOnScroll from '@/utils/RevealOnScroll';
 
 const linkData: LinkItem[] = [
   { title: 'Wholesale', href: '/wholesale', icon: FiPackage },
@@ -13,7 +15,6 @@ const linkData: LinkItem[] = [
   { title: 'Manufacture', href: '/manufacture', icon: FiCpu },
   { title: 'Para', href: '/para', icon: FiTool },
 ];
-
 
 const products: Product[] = [
   {
@@ -77,16 +78,21 @@ export default function Page() {
       />
 
       <section className="w-full max-w-7xl px-4 mx-auto overflow-visible py-8">
-        <h2 className="text-2xl text-center font-semibold mb-20 text-gray-900 dark:text-white">
-          Recent Products
-        </h2>
-        <ProductCarousel products={products} />
+        <RevealOnScroll>
+          <h2 className="text-2xl text-center font-semibold mb-20 text-[#207ae1]">
+            RECENT PRODUCTS
+          </h2>
+        </RevealOnScroll>
+
+          <ProductCarousel products={products} />
       </section>
+
       <Description />
-      <footer className='w-full mt-10'>
+      <Blog />
+
+      <footer className="w-full mt-10">
         <Footer />
       </footer>
     </main>
-
   );
 }

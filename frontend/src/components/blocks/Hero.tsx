@@ -3,21 +3,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
-import { Monomaniac_One } from 'next/font/google';
-import { Inter } from 'next/font/google';
+import { Monomaniac_One, Inter } from 'next/font/google';
 import { IconType } from 'react-icons';
+import RevealOnScroll from '@/utils/RevealOnScroll';
+import Bg from '../../../public/Bg.jpg'
 
-const monomaniac = Monomaniac_One({
-  subsets: ['latin'],
-  weight: '400',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
+const monomaniac = Monomaniac_One({ subsets: ['latin'], weight: '400', display: 'swap' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
 
 export interface LinkItem {
   title: string;
@@ -33,18 +25,13 @@ interface HeroWithLinksProps {
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
 };
 
 export default function Hero({ title, description, links }: HeroWithLinksProps) {
   const [titleNumber, setTitleNumber] = useState(0);
   const [isScrolledPastTitle, setIsScrolledPastTitle] = useState(false);
   const heroTitleRef = useRef<HTMLHeadingElement | null>(null);
-
   const titles = useMemo(() => ['Trusted', 'Reliable', 'Professional', 'Friendly', 'Smart'], []);
 
   useEffect(() => {
@@ -57,12 +44,9 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
   useEffect(() => {
     const handleScroll = () => {
       if (!heroTitleRef.current) return;
-
       const rect = heroTitleRef.current.getBoundingClientRect();
-
       setIsScrolledPastTitle(rect.bottom < 60);
     };
-
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -70,138 +54,139 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
 
   return (
     <>
-
+      {/* Floating Title on Scroll */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={isScrolledPastTitle ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/60 border border-gray-300 dark:border-gray-700 rounded-xl px-6 py-3 shadow-lg transition-all duration-500 ${monomaniac.className
-          } text-xl sm:text-2xl font-bold text-gray-900 dark:text-emerald-400`}
+        className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-sm bg-white/80 border border-gray-200 rounded-xl px-6 py-3 shadow-md transition-all duration-500 ${monomaniac.className} text-xl sm:text-2xl font-bold text-gray-900`}
       >
-        {title}
+        <span className="text-[#207ae1]">TARGET </span>
+        <span className="text-[#6fab1d]">COMPLEX</span>
       </motion.div>
 
-      <section
-        className={`w-full max-w-7xl min-h-[95vh] px-6 sm:px-8 lg:px-12 flex flex-col items-center justify-center text-center ${inter.className}`}
+      {/* Hero Section */}
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+        className={`relative w-full min-h-screen px-6 sm:px-8 lg:px-12 flex items-center justify-center text-center overflow-hidden ${inter.className}`}
       >
+        {/* 🔥 Background Image + Blur */}
+        <div className="absolute inset-0 z-0">
+          <div
+  className="w-full h-full bg-cover bg-center scale-110"
+  style={{
+    backgroundImage: `url('/Bg.jpg')`,
+  }}
+/>
 
-        <motion.h1
-          ref={heroTitleRef}
-          initial={{ opacity: 0, y: -30 }}
-          animate={!isScrolledPastTitle ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className={`text-gray-900 dark:text-white font-extrabold mb-6 sm:mb-10 text-5xl sm:text-6xl lg:text-7xl leading-tight ${monomaniac.className}`}
-        >
-          {title}
-        </motion.h1>
-
-
-        <div className="relative h-12 sm:h-14 mb-8 flex justify-center">
-          {titles.map((word, index) => (
-            <motion.span
-              key={index}
-              className="absolute text-2xl sm:text-3xl font-semibold text-emerald-600 dark:text-emerald-400 select-none"
-              initial={{ opacity: 0, y: '-100%' }}
-              transition={{ type: 'spring', stiffness: 50 }}
-              animate={
-                titleNumber === index
-                  ? { y: '0%', opacity: 1 }
-                  : { y: titleNumber > index ? '-100%' : '100%', opacity: 0 }
-              }
-            >
-              {word}
-            </motion.span>
-          ))}
+          {/* Optional: darker overlay for contrast */}
+          <div className="absolute w-[100%] inset-0" />
         </div>
 
+        {/* 🌟 Foreground Content */}
+        <div className="relative z-10 w-full max-w-7xl rounded-xl  px-6 sm:px-12 py-12 sm:py-20">
+          <RevealOnScroll>
+            <motion.h1
+              ref={heroTitleRef}
+              variants={fadeInUp}
+              className={`text-gray-900 font-extrabold mb-6 sm:mb-10 text-5xl sm:text-6xl lg:text-7xl leading-tight ${monomaniac.className}`}
+            >
+              <span className="text-[#207ae1]">TARGET</span>
+              <span className="text-[#6fab1d]">COMPLEX</span>
+            </motion.h1>
+          </RevealOnScroll>
 
-        <motion.p
-          variants={fadeInUp}
-          initial="hidden"
-          animate="visible"
-          className="text-gray-700 dark:text-gray-300 max-w-3xl mb-14 sm:mb-20 text-lg sm:text-xl leading-relaxed font-medium"
-        >
-          {description.split(' ').map((word, idx) => {
-            const accentWords = ['trusted', 'healthcare', 'expert', 'reliable', 'quality', 'care'];
-            if (accentWords.includes(word.toLowerCase().replace(/[.,]/g, ''))) {
-              return (
-                <span key={idx} className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                  {word + ' '}
-                </span>
-              );
-            }
-            return word + ' ';
-          })}
-        </motion.p>
-
-
-        <motion.div className="w-full space-y-6">
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 w-full"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
-            }}
-          >
-            {links.slice(0, 4).map(({ title, href, icon: Icon }) => (
-              <motion.div
-                key={title}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                whileTap={{ scale: 0.97 }}
-                className=""
-              >
-                <Link
-                  href={href}
-                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-3 py-6 text-center text-sm sm:text-sm font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
+          <RevealOnScroll>
+            <motion.div variants={fadeInUp} className="relative h-12 sm:h-14 mb-8 flex justify-center">
+              {titles.map((word, index) => (
+                <motion.span
+                  key={index}
+                  className="absolute text-2xl sm:text-3xl font-semibold text-[#6fab1d] select-none"
+                  initial={{ opacity: 0, y: '-100%' }}
+                  transition={{ type: 'spring', stiffness: 50 }}
+                  animate={
+                    titleNumber === index
+                      ? { y: '0%', opacity: 1 }
+                      : { y: titleNumber > index ? '-100%' : '100%', opacity: 0 }
+                  }
                 >
-                  <Icon className="mr-2 w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-                  {title}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+                  {word}
+                </motion.span>
+              ))}
+            </motion.div>
+          </RevealOnScroll>
 
+          <RevealOnScroll>
+            <motion.p
+              variants={fadeInUp}
+              className="text-gray-900 max-w-3xl mx-auto mb-14 sm:mb-20 text-lg sm:text-xl leading-relaxed font-medium"
+            >
+              {description.split(' ').map((word, idx) => {
+                const accentWords = ['trusted', 'healthcare', 'expert', 'reliable', 'quality', 'care'];
+                if (accentWords.includes(word.toLowerCase().replace(/[.,]/g, ''))) {
+                  return (
+                    <span key={idx} className="text-[#6fab1d] font-semibold">
+                      {word + ' '}
+                    </span>
+                  );
+                }
+                return word + ' ';
+              })}
+            </motion.p>
+          </RevealOnScroll>
 
-          <motion.div
-            className="flex justify-center gap-6 flex-wrap"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
-            }}
-          >
-            {links.slice(4).map(({ title, href, icon: Icon }) => (
+          {/* Link Buttons */}
+          <motion.div className="w-full space-y-6">
+            {/* First group of links */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full"
+              variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+            >
+              {links.slice(0, 4).map(({ title, href, icon: Icon }) => (
+                <RevealOnScroll key={title}>
+                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      href={href}
+                      className="flex items-center justify-center border-2 border-[#6fab1d] font-semibold rounded-xl px-6 py-5 hover:shadow-md transition-all duration-300 text-gray-900 hover:text-[#6fab1d] backdrop-blur-sm"
+                    >
+                      <Icon className="mr-3 w-6 h-6 text-[#6fab1d]" />
+                      {title}
+                    </Link>
+                  </motion.div>
+                </RevealOnScroll>
+              ))}
+            </motion.div>
+
+            {/* Remaining links */}
+            <RevealOnScroll>
               <motion.div
-                key={title}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                whileTap={{ scale: 0.97 }}
-                className="w-full sm:w-auto"
+                className="flex justify-center gap-4 flex-wrap"
+                variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
               >
-                <Link
-                  href={href}
-                  className="flex items-center justify-center bg-white/90 dark:bg-gray-800/90 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md hover:shadow-[0_0_8px_2px_rgba(16,185,129,0.3)] dark:hover:shadow-[0_0_8px_2px_rgba(52,211,153,0.3)] transition-all duration-300 px-7 py-6 text-center text-base sm:text-sm font-semibold text-gray-800 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400"
-                >
-                  <Icon className="mr-3 w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-                  {title}
-                </Link>
+                {links.slice(4).map(({ title, href, icon: Icon }) => (
+                  <motion.div
+                    key={title}
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full sm:w-auto"
+                  >
+                    <Link
+                      href={href}
+                      className="flex items-center justify-center  border-2 border-[#6fab1d] font-semibold rounded-xl px-6 py-5 hover:shadow-md transition-all duration-300 text-gray-900 hover:text-[#6fab1d] backdrop-blur-sm"
+                    >
+                      <Icon className="mr-3 w-6 h-6 text-[#6fab1d]" />
+                      {title}
+                    </Link>
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
+            </RevealOnScroll>
           </motion.div>
-        </motion.div>
-
-      </section>
+        </div>
+      </motion.section>
     </>
   );
 }

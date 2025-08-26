@@ -6,7 +6,6 @@ import { motion, Variants } from 'framer-motion';
 import { Monomaniac_One, Inter } from 'next/font/google';
 import { IconType } from 'react-icons';
 import RevealOnScroll from '@/utils/RevealOnScroll';
-import Bg from '../../../public/Bg.jpg'
 
 const monomaniac = Monomaniac_One({ subsets: ['latin'], weight: '400', display: 'swap' });
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
@@ -74,12 +73,13 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
       >
         {/* 🔥 Background Image + Blur */}
         <div className="absolute inset-0 z-0">
-          <div
-  className="w-full h-full bg-cover bg-center scale-110"
+         <div
+  className="w-full h-full bg-contain bg-no-repeat bg-center"
   style={{
-    backgroundImage: `url('/Bg.jpg')`,
+    backgroundImage: `url('/images/bg-og.jpg')`,
   }}
 />
+
 
           {/* Optional: darker overlay for contrast */}
           <div className="absolute w-[100%] inset-0" />

@@ -1,88 +1,102 @@
 "use client";
-
-import { FC } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import Footer from "@/components/blocks/Footer";
+import Navbar from "@/components/blocks/Navbar";
 
-const Wholesale: FC = () => {
-  // Mock data
+export default function Wholesale() {
   const products = [
-    { id: 1, name: "Household Goods", description: "Everyday essentials at scale", price: "Bulk Pricing", image: "/placeholder-product.jpg" },
-    { id: 2, name: "Pharmaceutical Supplies", description: "Medicines & medical products wholesale", price: "Bulk Pricing", image: "/placeholder-product.jpg" },
-    { id: 3, name: "Food & Beverages", description: "Packaged foods, drinks, and perishables", price: "Bulk Pricing", image: "/placeholder-product.jpg" },
-    { id: 4, name: "Retail Products", description: "General merchandise for supermarkets", price: "Bulk Pricing", image: "/placeholder-product.jpg" },
+    { id: 1, name: "Bulk Pain Relievers", description: "Wholesale packs for hospitals and pharmacies.", price: "From $199.99", image: "/placeholder-product.jpg" },
+    { id: 2, name: "Vitamin Supplies", description: "Large-scale distribution packs of multivitamins.", price: "From $499.99", image: "/placeholder-product.jpg" },
+    { id: 3, name: "Medical Equipment", description: "Essential hospital and clinic supplies in bulk.", price: "From $999.99", image: "/placeholder-product.jpg" },
+    { id: 4, name: "First Aid Kits", description: "Bulk first aid kits for institutions and retailers.", price: "From $149.99", image: "/placeholder-product.jpg" },
   ];
 
   const employees = [
-    { id: 1, name: "Alice N.", position: "Head of Wholesale Operations", image: "/placeholder-employee.jpg" },
-    { id: 2, name: "John M.", position: "Logistics Manager", image: "/placeholder-employee.jpg" },
-    { id: 3, name: "Grace T.", position: "Client Relations", image: "/placeholder-employee.jpg" },
+    { id: 1, name: "Sarah Brown", position: "Wholesale Manager", image: "/placeholder-employee.jpg" },
+    { id: 2, name: "James Lee", position: "Distribution Officer", image: "/placeholder-employee.jpg" },
+    { id: 3, name: "Emily Davis", position: "Logistics Coordinator", image: "/placeholder-employee.jpg" },
   ];
 
   const blogPosts = [
-    { id: 1, title: "Expanding Our Fleet", date: "Aug 20, 2025", excerpt: "We’ve added new trucks to improve delivery times." },
-    { id: 2, title: "New Kigali Warehouse", date: "Aug 15, 2025", excerpt: "Our largest storage facility yet has opened in Kigali." },
+    { id: 1, title: "How Wholesale Improves Supply Chains", date: "Aug 21, 2025", excerpt: "Discover how Target Wholesale ensures reliable distribution across the region." },
+    { id: 2, title: "Bulk Ordering Made Simple", date: "Aug 10, 2025", excerpt: "Our new platform makes ordering in bulk easier than ever." },
   ];
 
   const partners = [
-    { id: 1, name: "Partner A", logo: "/placeholder-logo.jpg" },
-    { id: 2, name: "Partner B", logo: "/placeholder-logo.jpg" },
-    { id: 3, name: "Partner C", logo: "/placeholder-logo.jpg" },
+    { id: 1, name: "Hospital A", logo: "/placeholder-logo.jpg" },
+    { id: 2, name: "Clinic B", logo: "/placeholder-logo.jpg" },
+    { id: 3, name: "Retail Chain C", logo: "/placeholder-logo.jpg" },
+    { id: 4, name: "Distributor D", logo: "/placeholder-logo.jpg" },
+    { id: 5, name: "Health Org E", logo: "/placeholder-logo.jpg" },
   ];
 
   const locations = [
-    { id: 1, address: "Kigali Distribution Center, Kigali, Rwanda" },
-    { id: 2, address: "Musanze Warehouse, Northern Province, Rwanda" },
+    { id: 1, address: "Warehouse A - 123 Industrial Park, City A" },
+    { id: 2, address: "Distribution Hub B - 456 Trade Zone, City B" },
   ];
 
   return (
-    <main className="min-h-screen text-black">
-      {/* Hero Section */}
+    <main className="min-h-screen text-gray-800">
+      <Navbar />
+
+      {/* Hero */}
       <section id="hero" className="relative h-screen flex items-center justify-center">
-        <img src="/wholesale/bg.jpg" alt="Wholesale background" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10 text-center text-white">
-          <h1 className="text-5xl font-bold mb-4">Target Wholesale</h1>
-          <p className="text-2xl mb-8">Bulk solutions for businesses across Rwanda</p>
-          <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded">
-            Explore Products
+        <img
+          src="/images/bg-og.jpg"
+          alt="Wholesale background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30"></div>
+
+        <div className="relative z-10 text-center text-white px-6">
+          <h1 className="text-6xl font-extrabold mb-4 drop-shadow-lg">Target Wholesale</h1>
+          <p className="text-2xl mb-8 max-w-2xl mx-auto">
+            Supplying hospitals, pharmacies, and institutions with reliable wholesale solutions.
+          </p>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transition">
+            Explore Wholesale
           </button>
         </div>
       </section>
 
-      {/* About Us */}
-      <section id="about" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">About Us</h2>
-          <p className="text-lg max-w-3xl mx-auto">
-            Target Wholesale provides high-quality products in bulk to businesses, pharmacies, and retailers. We ensure reliable supply, competitive pricing, and logistical support to help your business thrive.
+      {/* About */}
+      <section id="about" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-6">About Us</h2>
+          <p className="text-lg max-w-4xl mx-auto leading-relaxed">
+            At <span className="font-semibold">Target Wholesale</span>, we focus on bulk supply and distribution for healthcare providers and retailers.
+            With efficient logistics and trusted partnerships, we ensure reliable delivery and competitive pricing for our clients.
           </p>
         </div>
       </section>
 
       {/* Services */}
-      <section id="services" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">Our Services</h2>
-          <ul className="list-disc list-inside max-w-3xl mx-auto text-lg">
-            <li>Bulk Distribution</li>
-            <li>Competitive Pricing</li>
-            <li>Logistics Support</li>
-            <li>Business Partnerships</li>
-          </ul>
+      <section id="services" className="py-20">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-12">Our Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {["Bulk Ordering", "Distribution Logistics", "Hospital Supply", "Retail Partnerships"].map((service, i) => (
+              <div key={i} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+                <h3 className="text-xl font-semibold mb-2">{service}</h3>
+                <p className="text-gray-600">Reliable and scalable solutions tailored to your needs.</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Products */}
-      <section id="products" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">Our Products</h2>
+      <section id="products" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Wholesale Products</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product) => (
-              <div key={product.id} className="bg-white p-4 rounded-lg shadow-lg text-center">
-                <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4 rounded" />
-                <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                <p className="mb-2">{product.description}</p>
-                <p className="font-bold">{product.price}</p>
+              <div key={product.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
+                <Image src={product.image} alt={product.name} width={300} height={200} className="w-full h-48 object-cover mb-4 rounded-md" />
+                <h3 className="text-lg font-bold mb-1">{product.name}</h3>
+                <p className="text-gray-600 text-sm mb-2">{product.description}</p>
+                <p className="font-bold text-blue-600">{product.price}</p>
               </div>
             ))}
           </div>
@@ -90,27 +104,27 @@ const Wholesale: FC = () => {
       </section>
 
       {/* Locations */}
-      <section id="locations" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">Our Locations</h2>
-          <ul className="list-disc list-inside max-w-3xl mx-auto text-lg">
+      <section id="locations" className="py-20">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-8">Our Warehouses</h2>
+          <ul className="space-y-4 text-lg">
             {locations.map((loc) => (
-              <li key={loc.id}>{loc.address}</li>
+              <li key={loc.id} className="bg-white p-4 rounded-lg shadow-md inline-block">{loc.address}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* Employees */}
-      <section id="employees" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Team */}
+      <section id="employees" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Meet Our Wholesale Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {employees.map((employee) => (
-              <div key={employee.id} className="bg-white p-4 rounded-lg text-center shadow-lg">
-                <img src={employee.image} alt={employee.name} className="w-32 h-32 mx-auto rounded-full mb-4" />
-                <h3 className="text-xl font-bold mb-2">{employee.name}</h3>
-                <p>{employee.position}</p>
+              <div key={employee.id} className="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-2xl transition">
+                <Image src={employee.image} alt={employee.name} width={200} height={200} className="w-32 h-32 mx-auto rounded-full mb-4 object-cover" />
+                <h3 className="text-lg font-bold">{employee.name}</h3>
+                <p className="text-gray-600">{employee.position}</p>
               </div>
             ))}
           </div>
@@ -118,15 +132,15 @@ const Wholesale: FC = () => {
       </section>
 
       {/* Blog */}
-      <section id="blog" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">News & Updates</h2>
-          <div className="space-y-8">
+      <section id="blog" className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">News & Updates</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {blogPosts.map((post) => (
-              <div key={post.id} className="bg-white p-4 rounded-lg shadow-lg">
+              <div key={post.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
                 <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p className="text-sm mb-2">{post.date}</p>
-                <p>{post.excerpt}</p>
+                <p className="text-gray-500 text-sm mb-2">{post.date}</p>
+                <p className="text-gray-700">{post.excerpt}</p>
               </div>
             ))}
           </div>
@@ -134,7 +148,7 @@ const Wholesale: FC = () => {
       </section>
 
       {/* Partners */}
-      <section id="partners" className="py-16 bg-transparent">
+      <section id="partners" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">Our Partners</h2>
           <div className="relative w-full overflow-hidden">
@@ -144,8 +158,17 @@ const Wholesale: FC = () => {
               transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
             >
               {[...partners, ...partners].map((partner, index) => (
-                <div key={index} className="flex items-center justify-center min-w-[150px]">
-                  <img src={partner.logo} alt={partner.name} className="h-24 object-contain grayscale hover:grayscale-0 transition" />
+                <div
+                  key={`${partner.id}-${index}`}
+                  className="flex items-center justify-center min-w-[150px]"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={150}
+                    height={150}
+                    className="h-24 object-contain grayscale hover:grayscale-0 transition"
+                  />
                 </div>
               ))}
             </motion.div>
@@ -153,22 +176,22 @@ const Wholesale: FC = () => {
         </div>
       </section>
 
-      {/* Contact Us */}
-      <section id="contact" className="py-16 bg-transparent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-8 text-center">Contact Us</h2>
-          <form className="max-w-md mx-auto space-y-4">
-            <input type="text" placeholder="Your Name" className="w-full p-2 bg-white border border-gray-300 rounded text-black" />
-            <input type="email" placeholder="Your Email" className="w-full p-2 bg-white border border-gray-300 rounded text-black" />
-            <textarea placeholder="Your Message" className="w-full p-2 bg-white border border-gray-300 rounded h-32 text-black"></textarea>
-            <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded w-full">
+      {/* Contact */}
+      <section id="contact" className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Get in Touch</h2>
+          <form className="max-w-lg mx-auto space-y-4 bg-white p-8 rounded-xl shadow-lg">
+            <input type="text" placeholder="Your Name" className="w-full p-3 border border-gray-300 rounded-lg" />
+            <input type="email" placeholder="Your Email" className="w-full p-3 border border-gray-300 rounded-lg" />
+            <textarea placeholder="Your Message" className="w-full p-3 border border-gray-300 rounded-lg h-32"></textarea>
+            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg w-full transition">
               Send Message
             </button>
           </form>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
-};
-
-export default Wholesale;
+}

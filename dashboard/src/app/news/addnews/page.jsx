@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 
 const categories = [
@@ -7,8 +9,7 @@ const categories = [
     "New products",
     "Announcements",
 ];
-
-export function AddNewsForm({ onSubmit }) {
+function page({ onSubmit }) {
     const [formData, setFormData] = useState({
         id: "",
         title: "",
@@ -163,3 +164,5 @@ export function AddNewsForm({ onSubmit }) {
         </form>
     );
 }
+
+export default page;

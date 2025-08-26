@@ -136,9 +136,8 @@ export default function Home() {
               <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl ${metric.color}`}>
                 {metric.icon}
               </div>
-              <div className={`text-sm font-medium ${
-                metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-              }`}>
+              <div className={`text-sm font-medium ${metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                }`}>
                 {metric.change}
               </div>
             </div>
@@ -155,8 +154,8 @@ export default function Home() {
           <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Recent News</h2>
-              <Link 
-                href="/news" 
+              <Link
+                href="/news"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center"
               >
                 View All News
@@ -165,7 +164,7 @@ export default function Home() {
                 </svg>
               </Link>
             </div>
-            
+
             <div className="space-y-4">
               {recentNews.map((news) => (
                 <div key={news.id} className="flex items-start space-x-4 p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
@@ -189,22 +188,21 @@ export default function Home() {
         <div className="lg:col-span-1">
           <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
-            
+
             <div className="space-y-4">
-              <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center">
+              <Link href="/products/addnew" className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>                
-                Add New Product
-              </button>        
-              <Link href="/products/addnew" className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"> Create new Product</Link>      
-              <button className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center">
+                </svg>
+                Create new Product
+              </Link>
+              <Link href='/news/addnews' className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
                 Post News Update
-              </button>
-              
+              </Link>
+
               <button onClick={() => alert("This Page require most backend, coming soon!!")} className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center justify-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -223,7 +221,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-gray-900">Stock Alerts</h2>
             <span className="text-sm text-gray-500">Products at Risk</span>
           </div>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -240,10 +238,9 @@ export default function Home() {
                   <tr key={product.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="py-3 px-4 font-medium text-gray-900">{product.name}</td>
                     <td className="py-3 px-4">
-                      <span className={`font-semibold ${
-                        product.stock < 10 ? 'text-red-600' : 
+                      <span className={`font-semibold ${product.stock < 10 ? 'text-red-600' :
                         product.stock < 20 ? 'text-orange-600' : 'text-green-600'
-                      }`}>
+                        }`}>
                         {product.stock} units
                       </span>
                     </td>
@@ -263,7 +260,6 @@ export default function Home() {
               </tbody>
             </table>
           </div>
-          
           {stockAlerts.length === 0 && (
             <div className="text-center py-8">
               <div className="text-4xl mb-4">📦</div>

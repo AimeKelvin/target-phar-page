@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 
-export function AddNewProductForm({ onSubmit }) {
+function page({ onSubmit }) {
     const [formData, setFormData] = useState({
         id: "",
         name: "",
@@ -91,3 +93,5 @@ export function AddNewProductForm({ onSubmit }) {
         </form>
     );
 }
+
+export default page;

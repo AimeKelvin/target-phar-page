@@ -1,3 +1,5 @@
+"use client"
+
 export default function ProductsPage() {
     const products = [
         { id: 1, name: "Paracetamol", price: "$5", stock: 120 },

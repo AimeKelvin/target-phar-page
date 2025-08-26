@@ -5,7 +5,7 @@ export const metadata = {
   title: "Dashboard",
   description: "Next.js Dashboard Project",
 };
- 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
@@ -20,10 +20,10 @@ export default function RootLayout({ children }) {
               <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
                   <span className="text-xl">🏠</span> Home
               </Link>
-              <Link href="/NewsPage" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
+              <Link href="/news" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
                   <span className="text-xl">📰</span> News
               </Link>
-              <Link href="/ProductsPage" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
+              <Link href="/products" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
                   <span className="text-xl">💊</span> Products
               </Link>
               <Link href="/settings" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">

@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
-import NewsPage from '@/components/news/page';
-import ProductPage from '@/components/products/page';
+import Newspage from '@/app/news/page';
+import Productpage from '@/app/products/page';
 
 export default function Home() {
   // Sample data for the dashboard
@@ -275,8 +275,6 @@ export default function Home() {
           )}
         </div>
       </div>
-      <NewsPage />
-      <ProductPage />
     </div>
   );
 }

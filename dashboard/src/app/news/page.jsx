@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 const newsData = [
@@ -67,7 +69,7 @@ const categoryColors = {
     Announcements: "border-purple-500 bg-purple-50 text-purple-700",
 };
 
-export default function NewsPage() {
+export default function newspage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -113,7 +115,7 @@ export default function NewsPage() {
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
                         className={`px-5 py-2 rounded-full border font-semibold transition 
-              ${selectedCategory === cat
+                ${selectedCategory === cat
                                 ? categoryColors[cat]?.replace("bg-", "bg-opacity-40 bg-") || "bg-gray-300"
                                 : "bg-white border-gray-300 text-gray-700 hover:bg-gray-100"
                             }`}

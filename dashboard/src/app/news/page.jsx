@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 const newsData = [
     {
@@ -139,9 +140,11 @@ export default function newspage() {
                     <div className="max-w-3xl">
                         <h2 className="text-2xl font-bold mb-3">{featuredNews.title}</h2>
                         <p className="text-gray-700 mb-5">{featuredNews.description}</p>
+                        <Link href='/news/readmore'>
                         <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
                             Read more
                         </button>
+                        </Link>
                     </div>
                 </section>
             )}
@@ -164,9 +167,11 @@ export default function newspage() {
                                     🕒 {article.date} {article.author && <>| ✍ {article.author}</>}
                                 </div>
                                 <p className="text-gray-700 mb-3">{article.description}</p>
+                                <Link href='/news/readmore'>
                                 <button className="self-start bg-blue-600 text-white px-4 py-1.5 rounded-full font-semibold hover:bg-blue-700 transition">
                                     Read more
                                 </button>
+                                </Link>
                             </div>
                         </article>
                     ))

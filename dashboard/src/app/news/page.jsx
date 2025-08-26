@@ -63,10 +63,10 @@ const newsData = [
 // Tailwind colors for categories
 const categoryColors = {
     "Health Alerts": "border-red-500 bg-red-50 text-red-700",
-    Promotions: "border-green-500 bg-green-50 text-green-700",
+    "Promotions": "border-green-500 bg-green-50 text-green-700",
     "Health Tips": "border-blue-500 bg-blue-50 text-blue-700",
     "New Products": "border-orange-500 bg-orange-50 text-orange-700",
-    Announcements: "border-purple-500 bg-purple-50 text-purple-700",
+    "Announcements": "border-purple-500 bg-purple-50 text-purple-700",
 };
 
 export default function newspage() {
@@ -90,8 +90,8 @@ export default function newspage() {
         <div className="max-w-5xl mx-auto p-6 font-sans text-gray-900">
             {/* Header */}
             <header className="text-center mb-10">
-                <h1 className="text-4xl font-extrabold mb-2">Pharmacy News & Updates</h1>
-                <p className="text-gray-600 text-lg">
+                <h1 className="text-4xl text-gray-400 font-extrabold mb-2">Pharmacy News & Updates</h1>
+                <p className="text-gray-500 text-lg">
                     Latest announcements, promotions, and health alerts for our customers.
                 </p>
             </header>
@@ -104,7 +104,7 @@ export default function newspage() {
                     placeholder="Search news..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400"
                 />
             </div>
 

@@ -26,9 +26,6 @@ export default function RootLayout({ children }) {
               <Link href="/products" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
                   <span className="text-xl">💊</span> Products
               </Link>
-              <Link href="/settings" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400">
-                  <span className="text-xl">⚙</span> Settings
-              </Link>
             </nav>
           </aside>
 

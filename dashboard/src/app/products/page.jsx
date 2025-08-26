@@ -12,7 +12,6 @@ export default function ProductsPage() {
             <h1 className="text-3xl font-extrabold text-gray-800 mb-8">
                 Pharmacy Products
             </h1>
-
             <div className="overflow-x-auto">
                 <table className="w-full text-left rounded-lg shadow-lg divide-y divide-gray-200">
                     <thead className="bg-gray-100">

@@ -9,11 +9,11 @@ import Blog from '@/components/blocks/Blog';
 import RevealOnScroll from '@/utils/RevealOnScroll';
 
 const linkData: LinkItem[] = [
-  { title: 'Wholesale', href: '/wholesale', icon: FiPackage },
-  { title: 'Pharmacy', href: '/pharmacy', icon: FiPlusCircle },
-  { title: 'Clinic', href: '/clinic', icon: FiHome },
-  { title: 'Manufacture', href: '/manufacture', icon: FiCpu },
-  { title: 'Para', href: '/para', icon: FiTool },
+
+  { title: 'health target parapharmatical', href: '/pharmacy', icon: FiPlusCircle },
+    { title: 'iraguha pharmacy', href: '/wholesale', icon: FiPackage },
+  { title: 'health target parapharmatical wholesale', href: '/clinic', icon: FiHome},
+
 ];
 
 const products: Product[] = [
@@ -84,7 +84,7 @@ export default function Page() {
           </h2>
         </RevealOnScroll>
 
-          <ProductCarousel products={products} />
+        <ProductCarousel products={products} />
       </section>
 
       <Description />

@@ -9,7 +9,7 @@ const blogPosts = [
       'Discover the innovative ways Target Complex is reshaping health services with modern technology and compassionate care.',
     date: 'August 15, 2025',
     uploader: 'Dr. Jane Mwiza',
-    image: 'https://i.pinimg.com/1200x/39/17/39/391739faefdba7a82dce7536c19640ff.jpg', // Replace with your image path
+    image: '/Logo.png',
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const blogPosts = [
       'An in-depth look at the growing importance of parapharmaceutical products and how they support wellness.',
     date: 'July 30, 2025',
     uploader: 'Health Target Team',
-    image: 'https://i.pinimg.com/1200x/39/17/39/391739faefdba7a82dce7536c19640ff.jpg',
+    image: '/Logo.png',
   },
   {
     id: 3,
@@ -27,59 +27,65 @@ const blogPosts = [
       'Expert advice and preventive measures every woman should know for a healthier life.',
     date: 'July 10, 2025',
     uploader: 'Dr. Alice Uwimana',
-    image: 'https://i.pinimg.com/1200x/39/17/39/391739faefdba7a82dce7536c19640ff.jpg',
+    image: '/Logo.png',
   },
 ];
 
 function BlogSection() {
   return (
     <section className="max-w-screen-xl mx-auto px-6 py-12">
-        <RevealOnScroll>
-        <h2 className="text-2xl text-center font-extrabold  mb-10 text-[#207ae1]">
-            RECENT PRODUCTS
-          </h2>
-          </RevealOnScroll>
-          <RevealOnScroll>
-         
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map(({ id, name, description, date, uploader, image }) => (
-          <article
-            key={id}
-            className="bg-white border-2 border-[#6fab1d] rounded-lg shadow-lg overflow-hidden hover:shadow-[#6fab1d] scale-90 transition-shadow duration-300"
-          >
-            <div className="relative group p-2 rounded-t-lg overflow-hidden">
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-48 object-cover rounded-t-lg group-hover:scale-105 transition-transform duration-300"
-              />
-              <button
-                aria-label="Play Video"
-                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <svg
-                  className="w-14 h-14 text-[#207ae1] cursor-pointer drop-shadow-lg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-            </div>
+      <RevealOnScroll>
+        <h2 className="text-3xl text-center font-extrabold tracking-wide mb-12 text-[#207ae1]">
+          NEWS & UPDATES
+        </h2>
+      </RevealOnScroll>
 
-            <div className="p-6 text-gray-900">
-              <h3 className="text-xl font-semibold mb-2">{name}</h3>
-              <p className="text-sm mb-4">{description}</p>
-
-              <div className="flex justify-between text-sm text-gray-900 font-medium">
-                <time dateTime={date}>{date}</time>
-                <span>By <span className='font-bold text-[#6fab1d] ' >{uploader}</span></span>
+      <RevealOnScroll>
+        <div className="flex flex-wrap justify-center gap-8">
+          {blogPosts.map(({ id, name, description, date, uploader, image }) => (
+            <article
+              key={id}
+              className="bg-white border-2 border-[#6fab1d] rounded-lg shadow-md overflow-hidden hover:shadow-[#6fab1d] transition-shadow duration-300 w-[300px]"
+            >
+              {/* Uploader at the top */}
+              <div className="bg-[#f3fef0] text-[#6fab1d] font-semibold px-4 py-2 text-sm">
+                {uploader}
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
-       </RevealOnScroll>
+
+
+              <div className="relative group p-2 overflow-hidden">
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <button
+                  aria-label="Play Video"
+                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <svg
+                    className="w-14 h-14 text-[#207ae1] cursor-pointer drop-shadow-lg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+              </div>
+
+
+              <div className="px-4 pb-6 text-gray-900">
+                <h3 className="text-lg font-bold mb-2">{name}</h3>
+                <p className="text-sm mb-4">{description}</p>
+
+                <div className="text-sm text-gray-600 font-medium">
+                  <time dateTime={date}>{date}</time>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }

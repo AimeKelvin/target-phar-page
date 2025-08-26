@@ -138,53 +138,33 @@ export default function Hero({ title, description, links }: HeroWithLinksProps) 
           </RevealOnScroll>
 
           {/* Link Buttons */}
-          <motion.div className="w-full space-y-6">
-            {/* First group of links */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full"
-              variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-            >
-              {links.slice(0, 4).map(({ title, href, icon: Icon }) => (
-                <RevealOnScroll key={title}>
-                  <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-                    <Link
-                      href={href}
-                      className="flex items-center justify-center border-2 border-[#6fab1d] font-semibold rounded-xl px-6 py-5 hover:shadow-md transition-all duration-300 text-gray-900 hover:text-[#6fab1d] backdrop-blur-sm"
-                    >
-                      <Icon className="mr-3 w-6 h-6 text-[#6fab1d]" />
-                      {title}
-                    </Link>
-                  </motion.div>
-                </RevealOnScroll>
-              ))}
-            </motion.div>
+          <motion.div className="w-fit mx-auto space-y-6">
+  <RevealOnScroll>
+    <motion.div
+      className="flex flex-wrap justify-center gap-4"
+      variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+    >
+      {links.slice(0, 3).map(({ title, href, icon: Icon }) => (
+        <motion.div
+          key={title}
+          variants={fadeInUp}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          className="min-w-fit"
+        >
+          <Link
+            href={href}
+            className="flex items-center justify-center border-2 border-[#6fab1d] font-semibold rounded-xl px-6 py-5 hover:shadow-md transition-all duration-300 text-gray-900 hover:text-[#6fab1d] backdrop-blur-sm uppercase"
+          >
+            <Icon className="mr-3 w-6 h-6 text-[#6fab1d]" />
+            {title}
+          </Link>
+        </motion.div>
+      ))}
+    </motion.div>
+  </RevealOnScroll>
+</motion.div>
 
-            {/* Remaining links */}
-            <RevealOnScroll>
-              <motion.div
-                className="flex justify-center gap-4 flex-wrap"
-                variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-              >
-                {links.slice(4).map(({ title, href, icon: Icon }) => (
-                  <motion.div
-                    key={title}
-                    variants={fadeInUp}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="w-full sm:w-auto"
-                  >
-                    <Link
-                      href={href}
-                      className="flex items-center justify-center  border-2 border-[#6fab1d] font-semibold rounded-xl px-6 py-5 hover:shadow-md transition-all duration-300 text-gray-900 hover:text-[#6fab1d] backdrop-blur-sm"
-                    >
-                      <Icon className="mr-3 w-6 h-6 text-[#6fab1d]" />
-                      {title}
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </RevealOnScroll>
-          </motion.div>
         </div>
       </motion.section>
     </>

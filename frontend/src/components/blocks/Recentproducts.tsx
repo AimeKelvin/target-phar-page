@@ -113,7 +113,8 @@ export default function Recentproducts({ products }: ProductCarouselProps) {
                 }}
               >
                 <Image
-                  src={`${product.image}?auto=compress&cs=tinysrgb&dpr=2&h=300`}
+                  // src={`${product.image}?auto=compress&cs=tinysrgb&dpr=2&h=300`}
+                  src='/Logo.png'
                   alt={product.type}
                   layout="fill"
                   objectFit="cover"

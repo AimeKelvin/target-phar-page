@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Footer from "@/components/blocks/Footer";
+import Navbar from "@/components/blocks/Navbar";
 
 export default function Pharmacy() {
   const products = [
@@ -37,18 +38,32 @@ export default function Pharmacy() {
 
   return (
     <main className="min-h-screen text-gray-800">
+      <Navbar />
       {/* Hero */}
-      <section id="hero" className="relative h-screen flex items-center justify-center">
-        <img src="/pharmacy/bg.jpg" alt="Pharmacy background" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-black/70"></div>
-        <div className="relative z-10 text-center text-white px-6">
-          <h1 className="text-6xl font-extrabold mb-4 drop-shadow-lg">Target Pharmacy</h1>
-          <p className="text-2xl mb-8 max-w-2xl mx-auto">Trusted care, quality products, and expert guidance for your wellness journey.</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transition">
-            Shop Now
-          </button>
-        </div>
-      </section>
+    <section id="hero" className="relative h-screen flex items-center justify-center">
+  {/* Background Image */}
+  <img
+    src="/images/bg-og.jpg"
+    alt="Pharmacy background"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+
+  {/* Gentle Dark Overlay */}
+  <div className="absolute inset-0 bg-black/30"></div>
+
+  {/* Content */}
+  <div className="relative z-10 text-center text-white px-6">
+    <h1 className="text-6xl font-extrabold mb-4 drop-shadow-lg">Target Pharmacy</h1>
+    <p className="text-2xl mb-8 max-w-2xl mx-auto">
+      Trusted care, quality products, and expert guidance for your wellness journey.
+    </p>
+    <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-xl transition">
+      Shop Now
+    </button>
+  </div>
+</section>
+
+
 
       {/* About */}
       <section id="about" className="py-20 bg-gray-50">

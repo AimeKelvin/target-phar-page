@@ -7,12 +7,13 @@ import Hero, { LinkItem } from '@/components/blocks/Hero';
 import Footer from '@/components/blocks/Footer';
 import Blog from '@/components/blocks/Blog';
 import RevealOnScroll from '@/utils/RevealOnScroll';
+import Navbar from '@/components/blocks/Navbar';
 
 const linkData: LinkItem[] = [
   { title: 'Wholesale', href: '/wholesale', icon: FiPackage },
   { title: 'Pharmacy', href: '/pharmacy', icon: FiPlusCircle },
   { title: 'Clinic', href: '/clinic', icon: FiHome },
-  { title: 'Manufacture', href: '/manufacture', icon: FiCpu },
+  { title: 'Manufacture', href: '/manufacturer', icon: FiCpu },
   { title: 'Para', href: '/para', icon: FiTool },
 ];
 
@@ -70,6 +71,8 @@ const products: Product[] = [
 
 export default function Page() {
   return (
+    <>
+      <Navbar />
     <main className="flex flex-col items-center justify-start w-full text-center md:py-0 pt-12 space-y-8 min-h-screen">
       <Hero
         title="TARGET COMPLEX"
@@ -94,5 +97,6 @@ export default function Page() {
         <Footer />
       </footer>
     </main>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Footer from "@/components/blocks/Footer";
 import Navbar from "@/components/blocks/Navbar";
+import NewsSection from "@/components/blocks/News";
 
 export default function Clinic() {
   const services = [
@@ -141,20 +142,7 @@ export default function Clinic() {
       </section>
 
       {/* Blog */}
-      <section id="blog" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-12 text-center">Health News & Updates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {blogPosts.map((post) => (
-              <div key={post.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
-                <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p className="text-gray-500 text-sm mb-2">{post.date}</p>
-                <p className="text-gray-700">{post.excerpt}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NewsSection />
 
       {/* Partners */}
       <section id="partners" className="py-20">

@@ -3,24 +3,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Footer from "@/components/blocks/Footer";
 import Navbar from "@/components/blocks/Navbar";
+import ProductsSection from "@/components/blocks/Products";
+import NewsSection from "@/components/blocks/News";
 
 export default function Wholesale() {
-  const products = [
-    { id: 1, name: "Bulk Pain Relievers", description: "Wholesale packs for hospitals and pharmacies.", price: "From $199.99", image: "/placeholder-product.jpg" },
-    { id: 2, name: "Vitamin Supplies", description: "Large-scale distribution packs of multivitamins.", price: "From $499.99", image: "/placeholder-product.jpg" },
-    { id: 3, name: "Medical Equipment", description: "Essential hospital and clinic supplies in bulk.", price: "From $999.99", image: "/placeholder-product.jpg" },
-    { id: 4, name: "First Aid Kits", description: "Bulk first aid kits for institutions and retailers.", price: "From $149.99", image: "/placeholder-product.jpg" },
-  ];
+
 
   const employees = [
     { id: 1, name: "Sarah Brown", position: "Wholesale Manager", image: "/placeholder-employee.jpg" },
     { id: 2, name: "James Lee", position: "Distribution Officer", image: "/placeholder-employee.jpg" },
     { id: 3, name: "Emily Davis", position: "Logistics Coordinator", image: "/placeholder-employee.jpg" },
-  ];
-
-  const blogPosts = [
-    { id: 1, title: "How Wholesale Improves Supply Chains", date: "Aug 21, 2025", excerpt: "Discover how Target Wholesale ensures reliable distribution across the region." },
-    { id: 2, title: "Bulk Ordering Made Simple", date: "Aug 10, 2025", excerpt: "Our new platform makes ordering in bulk easier than ever." },
   ];
 
   const partners = [
@@ -87,21 +79,7 @@ export default function Wholesale() {
       </section>
 
       {/* Products */}
-      <section id="products" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-12 text-center">Wholesale Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <div key={product.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
-                <Image src={product.image} alt={product.name} width={300} height={200} className="w-full h-48 object-cover mb-4 rounded-md" />
-                <h3 className="text-lg font-bold mb-1">{product.name}</h3>
-                <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                <p className="font-bold text-blue-600">{product.price}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    <ProductsSection />
 
       {/* Locations */}
       <section id="locations" className="py-20">
@@ -132,20 +110,7 @@ export default function Wholesale() {
       </section>
 
       {/* Blog */}
-      <section id="blog" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-12 text-center">News & Updates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {blogPosts.map((post) => (
-              <div key={post.id} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition">
-                <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p className="text-gray-500 text-sm mb-2">{post.date}</p>
-                <p className="text-gray-700">{post.excerpt}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    <NewsSection />
 
       {/* Partners */}
       <section id="partners" className="py-20 bg-gray-50">

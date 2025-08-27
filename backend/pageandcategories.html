@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page & Category Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-4 text-center">📋 Page & Category Manager</h1>
+
+    <!-- Loader -->
+    <div id="loader" class="hidden text-center mb-4">
+      <div class="inline-block w-6 h-6 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-sm text-gray-600">Loading...</p>
+    </div>
+
+    <!-- PAGE SECTION -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">Pages</h2>
+      <form id="pageForm" class="flex gap-2 mb-4">
+        <input id="pageName" type="text" placeholder="Page Name" class="border px-3 py-2 w-full" required />
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create</button>
+      </form>
+      <ul id="pagesList" class="space-y-2"></ul>
+    </div>
+
+    <!-- CATEGORY SECTION -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Categories</h2>
+      <form id="categoryForm" class="flex gap-2 mb-4">
+        <input id="categoryName" type="text" placeholder="Category Name" class="border px-3 py-2 w-1/2" required />
+        <select id="categoryPageId" class="border px-3 py-2 w-1/2" required></select>
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
+      </form>
+      <ul id="categoriesList" class="space-y-2"></ul>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:8000/targetcomplex';
+    const loader = document.getElementById('loader');
+    const pagesList = document.getElementById('pagesList');
+    const categoriesList = document.getElementById('categoriesList');
+    const categoryPageSelect = document.getElementById('categoryPageId');
+
+    const showLoader = () => loader.classList.remove('hidden');
+    const hideLoader = () => loader.classList.add('hidden');
+
+    const showAlert = (title, icon = 'success') => {
+      Swal.fire({ title, icon, timer: 2000, showConfirmButton: false });
+    };
+
+    const showError = (msg) => {
+      Swal.fire({
+        title: '❌ Error',
+        text: msg,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    };
+
+    // Load Pages
+    const loadPages = async () => {
+      showLoader();
+      try {
+        const res = await fetch(`${API_BASE}/pages`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const pages = await res.json();
+
+        pagesList.innerHTML = '';
+        categoryPageSelect.innerHTML = '<option value="">-- Select Page --</option>';
+
+        pages.forEach(page => {
+          // Page item
+          const li = document.createElement('li');
+          li.className = 'bg-gray-50 border px-4 py-2 flex justify-between items-center';
+          li.innerHTML = `
+            <div>
+              <strong>${page.name}</strong><br/>
+              <small class="text-xs text-gray-500">ID: ${page._id}</small>
+            </div>
+            <div>
+              <button onclick="editPage('${page._id}', '${page.name}')" class="text-blue-500">Edit</button>
+              <button onclick="deletePage('${page._id}')" class="text-red-500 ml-3">Delete</button>
+            </div>
+          `;
+          pagesList.appendChild(li);
+
+          // Dropdown option
+          const option = document.createElement('option');
+          option.value = page._id;
+          option.textContent = page.name;
+          categoryPageSelect.appendChild(option);
+        });
+      } catch (err) {
+        console.error('Page load error:', err);
+        showError('Failed to load pages. Check your backend server.');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Load Categories
+    const loadCategories = async () => {
+      showLoader();
+      try {
+        const res = await fetch(`${API_BASE}/categories`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        const categories = await res.json();
+
+        categoriesList.innerHTML = '';
+
+        categories.forEach(cat => {
+          const li = document.createElement('li');
+          li.className = 'bg-gray-50 border px-4 py-2 flex justify-between items-center';
+          li.innerHTML = `
+            <div>
+              <strong>${cat.name}</strong><br/>
+              <small class="text-xs text-gray-500">ID: ${cat._id}</small><br/>
+              <span class="text-sm">Page: ${cat.pageId?.name || 'Unknown'} (ID: ${cat.pageId?._id || 'N/A'})</span>
+            </div>
+            <div>
+              <button onclick="editCategory('${cat._id}', '${cat.name}', '${cat.pageId?._id}')" class="text-blue-500">Edit</button>
+              <button onclick="deleteCategory('${cat._id}')" class="text-red-500 ml-3">Delete</button>
+            </div>
+          `;
+          categoriesList.appendChild(li);
+        });
+      } catch (err) {
+        console.error('Category load error:', err);
+        showError('Failed to load categories. Ensure API is accessible and returns valid JSON.');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Submit Page
+    document.getElementById('pageForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('pageName').value;
+      showLoader();
+      try {
+        const res = await fetch(`${API_BASE}/pages`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        showAlert('Page created');
+        e.target.reset();
+        loadPages();
+      } catch (err) {
+        console.error('Create page error:', err);
+        showError('Failed to create page');
+      } finally {
+        hideLoader();
+      }
+    });
+
+    // Submit Category
+    document.getElementById('categoryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('categoryName').value;
+      const pageId = document.getElementById('categoryPageId').value;
+      showLoader();
+      try {
+        const res = await fetch(`${API_BASE}/categories`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, pageId })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        showAlert('Category created');
+        e.target.reset();
+        loadCategories();
+      } catch (err) {
+        console.error('Create category error:', err);
+        showError('Failed to create category');
+      } finally {
+        hideLoader();
+      }
+    });
+
+    // Edit Page
+    const editPage = async (id, name) => {
+      const { value: newName } = await Swal.fire({
+        title: 'Edit Page',
+        input: 'text',
+        inputLabel: 'New Name',
+        inputValue: name,
+        showCancelButton: true
+      });
+      if (!newName) return;
+
+      showLoader();
+      try {
+        await fetch(`${API_BASE}/pages/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: newName })
+        });
+        showAlert('Page updated');
+        loadPages();
+      } catch {
+        showError('Failed to update page');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Edit Category
+    const editCategory = async (id, name, pageId) => {
+      const { value: newName } = await Swal.fire({
+        title: 'Edit Category',
+        input: 'text',
+        inputLabel: 'New Name',
+        inputValue: name,
+        showCancelButton: true
+      });
+      if (!newName) return;
+
+      showLoader();
+      try {
+        await fetch(`${API_BASE}/categories/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: newName, pageId })
+        });
+        showAlert('Category updated');
+        loadCategories();
+      } catch {
+        showError('Failed to update category');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Delete Page
+    const deletePage = async (id) => {
+      if (!confirm('Are you sure?')) return;
+      showLoader();
+      try {
+        await fetch(`${API_BASE}/pages/${id}`, { method: 'DELETE' });
+        showAlert('Page deleted');
+        loadPages();
+        loadCategories();
+      } catch {
+        showError('Failed to delete page');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Delete Category
+    const deleteCategory = async (id) => {
+      if (!confirm('Are you sure?')) return;
+      showLoader();
+      try {
+        await fetch(`${API_BASE}/categories/${id}`, { method: 'DELETE' });
+        showAlert('Category deleted');
+        loadCategories();
+      } catch {
+        showError('Failed to delete category');
+      } finally {
+        hideLoader();
+      }
+    };
+
+    // Init
+    loadPages();
+    loadCategories();
+  </script>
+</body>
+</html>

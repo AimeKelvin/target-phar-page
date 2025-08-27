@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 
 const app = express();
 
+
 connectDB();
 
 
@@ -13,8 +14,16 @@ app.use(express.json());
 
 
 const newsRoutes = require('./routes/newsrouter');
-app.use('/targetcomplex/news', newsRoutes);
+const pageRoutes = require('./routes/pagerouter');
+const categoryRoutes = require('./routes/categoryrouter');
+const productRoutes = require('./routes/productroute');
+app.use('/targetcomplex/products', productRoutes);
+const adminRoutes = require('./routes/authroutes');
+app.use('/targetcomplex/admin', adminRoutes);
 
+app.use('/targetcomplex/news', newsRoutes);
+app.use('/targetcomplex/pages', pageRoutes);
+app.use('/targetcomplex/categories', categoryRoutes);
 
 
 app.use((err, req, res, next) => {

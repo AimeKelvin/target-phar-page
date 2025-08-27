@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-6 text-center">🛍️ Product Manager</h1>
+
+    <!-- PRODUCT FORM -->
+    <form id="productForm" class="space-y-4 mb-6">
+      <input type="text" id="productName" placeholder="Product Name" class="w-full border px-3 py-2 rounded" required />
+      <textarea id="productDesc" placeholder="Description" class="w-full border px-3 py-2 rounded"></textarea>
+      <input type="number" id="productPrice" placeholder="Price" class="w-full border px-3 py-2 rounded" required />
+      <input type="text" id="productAge" placeholder="Age Group (e.g., 3-8 years)" class="w-full border px-3 py-2 rounded" />
+      
+      <input type="file" id="productImage" accept="image/*" class="w-full border px-3 py-2 rounded" required />
+
+      <!-- Page & Category Select -->
+      <select id="pageSelect" class="w-full border px-3 py-2 rounded" required>
+        <option value="">-- Select Page --</option>
+      </select>
+
+      <select id="categorySelect" class="w-full border px-3 py-2 rounded" required>
+        <option value="">-- Select Category --</option>
+      </select>
+
+      <button type="submit" class="w-full bg-green-500 text-white py-2 rounded">Upload Product</button>
+    </form>
+
+    <hr class="mb-6" />
+
+
+    <div id="productsContainer" class="space-y-6">
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://localhost:8000/targetcomplex';
+    const pageSelect = document.getElementById('pageSelect');
+    const categorySelect = document.getElementById('categorySelect');
+    const productsContainer = document.getElementById('productsContainer');
+
+    // Show SweetAlert
+    const showAlert = (msg, type = 'success') => {
+      Swal.fire({ title: msg, icon: type, timer: 1500, showConfirmButton: false });
+    };
+
+    // Load Pages
+    const loadPages = async () => {
+      const res = await fetch(`${API}/pages`);
+      const pages = await res.json();
+
+      pageSelect.innerHTML = `<option value="">-- Select Page --</option>`;
+      pages.forEach(page => {
+        const option = document.createElement('option');
+        option.value = page._id;
+        option.textContent = page.name;
+        pageSelect.appendChild(option);
+      });
+    };
+
+    // Load Categories for selected page
+    const loadCategoriesByPage = async (pageId) => {
+      const res = await fetch(`${API}/categories`);
+      const allCategories = await res.json();
+      const filtered = allCategories.filter(cat => cat.pageId._id === pageId);
+
+      categorySelect.innerHTML = `<option value="">-- Select Category --</option>`;
+      filtered.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat._id;
+        option.textContent = cat.name;
+        categorySelect.appendChild(option);
+      });
+    };
+
+    // Load products grouped by category for selected page
+    const loadProductsByPage = async (pageId) => {
+      productsContainer.innerHTML = '';
+      const catRes = await fetch(`${API}/categories`);
+      const allCategories = await catRes.json();
+      const categories = allCategories.filter(cat => cat.pageId._id === pageId);
+
+      for (let cat of categories) {
+        const productRes = await fetch(`${API}/products/category/${cat._id}`);
+        const products = await productRes.json();
+
+        const section = document.createElement('div');
+        section.innerHTML = `
+          <h3 class="text-lg font-bold mb-2">${cat.name}</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${products.map(p => `
+              <div class="border p-4 rounded bg-gray-50">
+                <img src="${p.imageUrl}" alt="${p.name}" class="w-full h-40 object-cover mb-2 rounded" />
+                <h4 class="font-semibold">${p.name}</h4>
+                <p class="text-sm">${p.description || 'No description'}</p>
+                <p class="text-sm text-blue-500">💰 $${p.price}</p>
+                <p class="text-sm text-gray-500">👶 ${p.ageGroup || 'All ages'}</p>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        productsContainer.appendChild(section);
+      }
+    };
+
+    // Product Form Submission
+    document.getElementById('productForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const formData = new FormData();
+      formData.append('name', document.getElementById('productName').value);
+      formData.append('description', document.getElementById('productDesc').value);
+      formData.append('price', document.getElementById('productPrice').value);
+      formData.append('ageGroup', document.getElementById('productAge').value);
+      formData.append('image', document.getElementById('productImage').files[0]);
+      formData.append('pageId', pageSelect.value);
+      formData.append('categoryId', categorySelect.value);
+
+      try {
+        const res = await fetch(`${API}/products`, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!res.ok) throw new Error('Upload failed');
+        showAlert('Product uploaded!');
+        form.reset();
+        loadProductsByPage(pageSelect.value);
+      } catch (err) {
+        showAlert('Upload failed', 'error');
+      }
+    });
+
+    // When page changes
+    pageSelect.addEventListener('change', () => {
+      const pageId = pageSelect.value;
+      if (pageId) {
+        loadCategoriesByPage(pageId);
+        loadProductsByPage(pageId);
+      } else {
+        categorySelect.innerHTML = `<option value="">-- Select Category --</option>`;
+        productsContainer.innerHTML = '';
+      }
+    });
+
+    // Initial load
+    loadPages();
+  </script>
+</body>
+</html>

@@ -20,7 +20,7 @@ export default function RootLayout({
         <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#f9fef9] via-white to-[#eef5ea]" />
 
         {/* Optional texture overlay */}
-        <div className="fixed inset-0 z-10 pointer-events-none opacity-[0.03]  bg-repeat" />
+        <div className="fixed z-10 pointer-events-none opacity-[0.03]  bg-repeat" />
 
         {/* Main content */}
         <div className="relative z-20">

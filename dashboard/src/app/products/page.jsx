@@ -1,7 +1,114 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
+
+const originalProducts = [
+    {
+        id: 1,
+        name: "Digital Thermometer",
+        price: "$12.99",
+        stock: 100,
+        category: "Diagnostics",
+        description:
+            "Accurate and fast-reading thermometer suitable for home and clinical use.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+    {
+        id: 2,
+        name: "Blood Pressure Monitor",
+        price: "$49.99",
+        stock: 80,
+        category: "Diagnostics",
+        description:
+            "Automatic upper-arm blood pressure monitor with memory storage for 90 readings.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+    {
+        id: 3,
+        name: "First Aid Kit",
+        price: "$29.99",
+        stock: 60,
+        category: "Emergency",
+        description:
+            "Portable first aid kit with bandages, antiseptic wipes, scissors, and more.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+    {
+        id: 4,
+        name: "Surgical Face Masks (50pcs)",
+        price: "$15.00",
+        stock: 200,
+        category: "Protective Equipment",
+        description:
+            "Disposable 3-ply masks designed for safe and hygienic use in healthcare settings.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+    {
+        id: 5,
+        name: "Hand Sanitizer (500ml)",
+        price: "$8.99",
+        stock: 0,
+        category: "Protective Equipment",
+        description: "Alcohol-based hand sanitizer that kills 99.9% of germs.",
+        subsite: "Wellness and Personal Care",
+    },
+    {
+        id: 6,
+        name: "Wheelchair",
+        price: "$199.99",
+        stock: 25,
+        category: "Mobility",
+        description:
+            "Lightweight foldable wheelchair designed for comfort and easy transport.",
+        subsite: "IraguhaPharmacy",
+    },
+    {
+        id: 7,
+        name: "Glucose Monitoring Kit",
+        price: "$59.99",
+        stock: 40,
+        category: "Diabetes Care",
+        description: "Complete glucose testing kit with strips and lancets included.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+    {
+        id: 8,
+        name: "Nebulizer Machine",
+        price: "$89.99",
+        stock: 30,
+        category: "Respiratory Care",
+        description:
+            "Compact and efficient nebulizer for asthma and other respiratory treatments.",
+        subsite: "IraguhaPharmacy",
+    },
+    {
+        id: 9,
+        name: "Electric Massager",
+        price: "$75.00",
+        stock: 50,
+        category: "Wellness",
+        description:
+            "Handheld electric massager for muscle relaxation and pain relief.",
+        subsite: "Wellness and Personal Care",
+    },
+    {
+        id: 10,
+        name: "Pulse Oximeter",
+        price: "$39.99",
+        stock: 90,
+        category: "Diagnostics",
+        description:
+            "Non-invasive pulse oximeter for measuring oxygen saturation and pulse rate.",
+        subsite: "HealthTargetParapharmacetica",
+    },
+];
+
+// 🔁 Dynamically generate placeholder image URLs
+const products = originalProducts.map((product) => ({
+    ...product,
+    image: `https://placehold.co/600x400/gray/000?text=${encodeURIComponent(product.name)}`,
+}));
 
 export default function ProductsPage() {
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -19,113 +126,6 @@ export default function ProductsPage() {
         setIsModalOpen(false);
         setSelectedProduct(null);
     };
-
-    const originalProducts = [
-        {
-            id: 1,
-            name: "Digital Thermometer",
-            price: "$12.99",
-            stock: 100,
-            category: "Diagnostics",
-            description:
-                "Accurate and fast-reading thermometer suitable for home and clinical use.",
-            subsite: "Pharmacy",
-        },
-        {
-            id: 2,
-            name: "Blood Pressure Monitor",
-            price: "$49.99",
-            stock: 80,
-            category: "Diagnostics",
-            description:
-                "Automatic upper-arm blood pressure monitor with memory storage for 90 readings.",
-            subsite: "Pharmacy",
-        },
-        {
-            id: 3,
-            name: "First Aid Kit",
-            price: "$29.99",
-            stock: 60,
-            category: "Emergency",
-            description:
-                "Portable first aid kit with bandages, antiseptic wipes, scissors, and more.",
-            subsite: "Pharmacy",
-        },
-        {
-            id: 4,
-            name: "Surgical Face Masks (50pcs)",
-            price: "$15.00",
-            stock: 200,
-            category: "Protective Equipment",
-            description:
-                "Disposable 3-ply masks designed for safe and hygienic use in healthcare settings.",
-            subsite: "Pharmacy",
-        },
-        {
-            id: 5,
-            name: "Hand Sanitizer (500ml)",
-            price: "$8.99",
-            stock: 0,
-            category: "Protective Equipment",
-            description: "Alcohol-based hand sanitizer that kills 99.9% of germs.",
-            subsite: "Wellness and Personal Care",
-        },
-        {
-            id: 6,
-            name: "Wheelchair",
-            price: "$199.99",
-            stock: 25,
-            category: "Mobility",
-            description:
-                "Lightweight foldable wheelchair designed for comfort and easy transport.",
-            subsite: "Medical Equipment",
-        },
-        {
-            id: 7,
-            name: "Glucose Monitoring Kit",
-            price: "$59.99",
-            stock: 40,
-            category: "Diabetes Care",
-            description: "Complete glucose testing kit with strips and lancets included.",
-            subsite: "Pharmacy",
-        },
-        {
-            id: 8,
-            name: "Nebulizer Machine",
-            price: "$89.99",
-            stock: 30,
-            category: "Respiratory Care",
-            description:
-                "Compact and efficient nebulizer for asthma and other respiratory treatments.",
-            subsite: "Medical Equipment",
-        },
-        {
-            id: 9,
-            name: "Electric Massager",
-            price: "$75.00",
-            stock: 50,
-            category: "Wellness",
-            description:
-                "Handheld electric massager for muscle relaxation and pain relief.",
-            subsite: "Wellness and Personal Care",
-        },
-        {
-            id: 10,
-            name: "Pulse Oximeter",
-            price: "$39.99",
-            stock: 90,
-            category: "Diagnostics",
-            description:
-                "Non-invasive pulse oximeter for measuring oxygen saturation and pulse rate.",
-            subsite: "Pharmacy",
-        },
-    ];
-
-    // 🔁 Dynamically generate placeholder image URLs
-    const products = originalProducts.map((product) => ({
-        ...product,
-        image: `https://placehold.co/600x400/gray/000?text=${encodeURIComponent(product.name)}`,
-    }));
 
     const handleViewProduct = (product) => {
         setSelectedProduct(product);
@@ -158,7 +158,7 @@ export default function ProductsPage() {
     return (
         <div className="max-w-7xl mx-auto px-6 py-8 bg-gray-900 min-h-screen text-gray-300">
             <h1 className="text-4xl font-extrabold text-white mb-8 tracking-tight">
-                Pharmacy Products
+                Products
             </h1>
 
             <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-700">
@@ -183,7 +183,7 @@ export default function ProductsPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((p, idx) => (
+                        {filteredProducts.map((p, idx) => (
                             <tr
                                 key={p.id}
                                 className={

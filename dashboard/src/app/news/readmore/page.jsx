@@ -13,11 +13,11 @@ function Page({ params }) {
         bannerImage:
             "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=800&q=80",
         content: `
-🛡️ Stay Protected This Season: Vaccines Now Available at All Pharmacy Branches
+🛡️ Stay Protected This Season: Vaccines Now Available at All HealthTargetParapharmacetica Branches
 
 As the seasons shift, so do our health priorities. With colder months approaching and an increase in respiratory infections, it's crucial to take proactive steps to protect your health and the well-being of your loved ones. One of the most effective and proven methods? Vaccination.
 
-We’re proud to announce that **seasonal vaccines are now available at all of our pharmacy branches**, with **no cost to residents**. Whether you’re due for a flu shot, looking to update your immunizations, or just want to take preventative steps for you and your family, we’ve got you covered — conveniently, safely, and affordably.
+We’re proud to announce that **seasonal vaccines are now available at all of our HealthTargetParapharmacetica branches**, with **no cost to residents**. Whether you’re due for a flu shot, looking to update your immunizations, or just want to take preventative steps for you and your family, we’ve got you covered — conveniently, safely, and affordably.
 
 🏥 Why Vaccination Matters — Especially This Season
 
@@ -26,7 +26,7 @@ Each year, thousands of people are affected by preventable illnesses such as inf
 ✅ What You Need to Know
 
 📍 Visit Your Nearest Branch  
-All of our pharmacy branches are now offering walk-in and appointment-based vaccinations.
+All of our HealthTargetParapharmacetica branches are now offering walk-in and appointment-based vaccinations.
 
 📝 Simple Registration  
 Our in-branch staff will guide you through a quick and easy registration process. No complex paperwork, no long wait times.

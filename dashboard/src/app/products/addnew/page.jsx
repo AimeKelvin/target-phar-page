@@ -127,9 +127,9 @@ function Page({ onSubmit }) {
                     </span>
                     <div className="flex flex-col space-y-3">
                         {[
-                            { value: "pharmacy", label: "Pharmacy" },
-                            { value: "medical-equipment", label: "Medical Equipment" },
-                            { value: "wellness-personal-care", label: "Wellness & Personal Care" },
+                            { value: "parapharmacetica", label: "Health Target Parapharmacetica" },
+                            { value: "iraguha", label: "Iraguha Pharmacy" },
+                            { value: "wholesale", label: "HTP Wholesale" },
                         ].map(({ value, label }) => (
                             <label
                                 key={value}

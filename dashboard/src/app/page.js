@@ -1,7 +1,14 @@
 'use client';
 import Link from 'next/link';
 
+// export const metadata = {
+//   title: 'Dashboard - Target Complex',
+//   description: 'Wlelcome to the Target Complex Dashboard',
+// };
+
 export default function Home() {
+
+
   // Sample data for the dashboard
   const keyMetrics = [
     {
@@ -125,7 +132,7 @@ export default function Home() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-white mb-2">Dashboard Overview</h1>
-        <p className="text-lg text-gray-400">Quick stats and updates about your pharmacy operations.</p>
+        <p className="text-lg text-gray-400">Quick stats and updates about your HealthTargetParapharmacetica operations.</p>
       </div>
 
       {/* Key Metrics Cards */}

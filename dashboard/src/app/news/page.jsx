@@ -50,7 +50,7 @@ const newsData = [
     },
     {
         id: 5,
-        title: "Pharmacy Hours Update for Holiday Season",
+        title: "HealthTargetParapharmacetica Hours Update for Holiday Season",
         date: "2025-08-10 08:00",
         author: "Admin",
         description:
@@ -92,7 +92,7 @@ export default function Newspage() {
             {/* Header */}
             <header className="text-center mb-10">
                 <h1 className="text-4xl font-extrabold mb-2 text-white tracking-tight">
-                    Pharmacy News & Updates
+                    HealthTargetParapharmacetica News & Updates
                 </h1>
                 <p className="text-gray-400 text-lg">
                     Latest announcements, promotions, and health alerts for our customers.

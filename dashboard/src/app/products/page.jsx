@@ -30,8 +30,7 @@ const originalProducts = [
         price: "$29.99",
         stock: 60,
         category: "Emergency",
-        description:
-            "Portable first aid kit with bandages, antiseptic wipes, scissors, and more.",
+        description: "Portable first aid kit with bandages, antiseptic wipes, scissors, and more.",
         subsite: "HealthTargetParapharmacetica",
     },
     {
@@ -59,8 +58,7 @@ const originalProducts = [
         price: "$199.99",
         stock: 25,
         category: "Mobility",
-        description:
-            "Lightweight foldable wheelchair designed for comfort and easy transport.",
+        description: "Lightweight foldable wheelchair designed for comfort and easy transport.",
         subsite: "IraguhaPharmacy",
     },
     {
@@ -88,8 +86,7 @@ const originalProducts = [
         price: "$75.00",
         stock: 50,
         category: "Wellness",
-        description:
-            "Handheld electric massager for muscle relaxation and pain relief.",
+        description: "Handheld electric massager for muscle relaxation and pain relief.",
         subsite: "Wellness and Personal Care",
     },
     {
@@ -107,7 +104,7 @@ const originalProducts = [
 // 🔁 Dynamically generate placeholder image URLs
 const products = originalProducts.map((product) => ({
     ...product,
-    image: `https://placehold.co/600x400/gray/000?text=${encodeURIComponent(product.name)}`,
+    image: `https://placehold.co/600x400/444444/bbbbbb?text=${encodeURIComponent(product.name)}`,
 }));
 
 export default function ProductsPage() {
@@ -139,47 +136,33 @@ export default function ProductsPage() {
     };
 
     const handleDelete = (product) => {
-        const confirmDelete = window.confirm(
-            `Are you sure you want to delete ${product.name}?`
-        );
+        const confirmDelete = window.confirm(`Are you sure you want to delete ${product.name}?`);
         if (confirmDelete) {
             alert(`Delete functionality for ${product.name} - Frontend only`);
             closeModal();
         }
     };
 
+    // Updated stock status colors for dark theme
     const getStockStatus = (stock) => {
         if (stock === 0) return { text: "Out of Stock", color: "text-red-400 bg-red-900" };
-        if (stock < 30)
-            return { text: "Low Stock", color: "text-yellow-300 bg-yellow-900" };
+        if (stock < 30) return { text: "Low Stock", color: "text-yellow-400 bg-yellow-900" };
         return { text: "In Stock", color: "text-green-400 bg-green-900" };
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-8 bg-gray-900 min-h-screen text-gray-300">
-            <h1 className="text-4xl font-extrabold text-white mb-8 tracking-tight">
-                Products
-            </h1>
+        <div className="max-w-7xl mx-auto px-6 py-8 bg-[#121212] min-h-screen text-gray-300 font-sans">
+            <h1 className="text-4xl font-extrabold text-gray-300 mb-8 tracking-tight">Products</h1>
 
             <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-700">
                 <table className="w-full text-left divide-y divide-gray-700">
-                    <thead className="bg-gray-800">
+                    <thead className="bg-[#1E1E1E]">
                         <tr>
-                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-sm text-gray-400">
-                                ID
-                            </th>
-                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-sm text-gray-400">
-                                Product
-                            </th>
-                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-sm text-gray-400">
-                                Price
-                            </th>
-                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-sm text-gray-400">
-                                Stock
-                            </th>
-                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-sm text-gray-400">
-                                Actions
-                            </th>
+                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-gray-400 text-sm">ID</th>
+                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-gray-400 text-sm">Product</th>
+                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-gray-400 text-sm">Price</th>
+                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-gray-400 text-sm">Stock</th>
+                            <th className="px-6 py-3 uppercase tracking-wide font-semibold text-gray-400 text-sm">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -188,19 +171,20 @@ export default function ProductsPage() {
                                 key={p.id}
                                 className={
                                     idx % 2 === 0
-                                        ? "bg-gray-800"
-                                        : "bg-gray-700 hover:bg-gray-600 transition-colors"
+                                        ? "bg-[#1E1E1E]"
+                                        : "bg-[#2A2A2A] hover:bg-[#2A2A2A] transition-colors"
                                 }
                             >
-                                <td className="px-6 py-4 font-medium">{p.id}</td>
-                                <td className="px-6 py-4 font-semibold text-white">{p.name}</td>
-                                <td className="px-6 py-4">{p.price}</td>
-                                <td className="px-6 py-4">{p.stock}</td>
+                                <td className="px-6 py-4 font-medium text-gray-300">{p.id}</td>
+                                <td className="px-6 py-4 font-semibold text-gray-400">{p.name}</td>
+                                <td className="px-6 py-4 text-gray-300">{p.price}</td>
+                                <td className="px-6 py-4 text-gray-300">{p.stock}</td>
                                 <td className="px-6 py-4">
                                     <button
                                         onClick={() => handleViewProduct(p)}
-                                        className="text-blue-400 hover:text-blue-600 hover:bg-gray-600 p-2 rounded-full transition-all duration-200 font-semibold"
+                                        className="text-gray-400 hover:text-blue-400 hover:bg-[#2A2A2A] p-2 rounded-full transition-all duration-200 font-semibold"
                                         title="View Details"
+                                        aria-label={`View details of ${p.name}`}
                                     >
                                         👁️
                                     </button>
@@ -213,13 +197,11 @@ export default function ProductsPage() {
 
             {isModalOpen && selectedProduct && (
                 <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-                    <div className="bg-gray-900 rounded-lg max-w-2xl w-full max-h-[100vh] overflow-y-auto shadow-2xl border border-gray-700">
-
-
+                    <div className="bg-[#121212] rounded-lg max-w-2xl w-full max-h-[100vh] overflow-y-auto shadow-2xl border border-gray-700">
                         <div className="p-6">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-4">
-                                    <div className="aspect-square bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700">
+                                    <div className="aspect-square bg-[#2A2A2A] rounded-lg flex items-center justify-center border border-gray-700">
                                         <img
                                             src={selectedProduct.image}
                                             alt={selectedProduct.name}
@@ -234,54 +216,42 @@ export default function ProductsPage() {
 
                                 <div className="space-y-4">
                                     <div>
-                                        <h3 className="text-xl font-semibold text-white mb-2">
-                                            {selectedProduct.name}
-                                        </h3>
+                                        <h3 className="text-xl font-semibold text-gray-300 mb-2">{selectedProduct.name}</h3>
                                         <div className="flex items-center gap-2 mb-4">
                                             <span
-                                                className={`px-3 py-1 rounded-full text-sm font-medium ${getStockStatus(
-                                                    selectedProduct.stock
-                                                ).color}`}
+                                                className={`px-3 py-1 rounded-full text-sm font-medium ${getStockStatus(selectedProduct.stock).color}`}
                                             >
                                                 {getStockStatus(selectedProduct.stock).text}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4 text-gray-300">
+                                    <div className="grid grid-cols-2 gap-4 text-gray-400">
                                         <div>
-                                            <label className="block text-sm font-medium mb-1">
-                                                Product ID
-                                            </label>
-                                            <p className="font-semibold">#{selectedProduct.id}</p>
+                                            <label className="block text-sm font-medium mb-1">Product ID</label>
+                                            <p className="font-semibold text-gray-300">#{selectedProduct.id}</p>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium mb-1">Price</label>
-                                            <p className="text-2xl font-bold text-green-400">
-                                                {selectedProduct.price}
-                                            </p>
+                                            <p className="text-2xl font-bold text-blue-400">{selectedProduct.price}</p>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium mb-1">
-                                                Stock Quantity
-                                            </label>
-                                            <p className="font-semibold">{selectedProduct.stock} units</p>
+                                            <label className="block text-sm font-medium mb-1">Stock Quantity</label>
+                                            <p className="font-semibold text-gray-300">{selectedProduct.stock} units</p>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium mb-1">
-                                                Sub Site
-                                            </label>
-                                            <p className="font-semibold">{selectedProduct.subsite}</p>
+                                            <label className="block text-sm font-medium mb-1">Sub Site</label>
+                                            <p className="font-semibold text-gray-300">{selectedProduct.subsite}</p>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium mb-1">Category</label>
-                                            <p className="font-semibold">{selectedProduct.category}</p>
+                                            <p className="font-semibold text-gray-300">{selectedProduct.category}</p>
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium mb-2">Description</label>
-                                        <p className="bg-gray-800 p-3 rounded-lg leading-relaxed text-gray-300">
+                                        <p className="bg-[#2A2A2A] p-3 rounded-lg leading-relaxed text-gray-400">
                                             {selectedProduct.description}
                                         </p>
                                     </div>
@@ -289,25 +259,25 @@ export default function ProductsPage() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between p-6 border-t border-gray-700 bg-gray-800 rounded-b-lg">
+                        <div className="flex items-center justify-between p-6 border-t border-gray-700 bg-[#1E1E1E] rounded-b-lg">
                             <button
                                 onClick={closeModal}
-                                className="px-4 py-2 bg-gray-600 text-white border border-gray-600 font-bold rounded-lg hover:bg-gray-800 transition-colors"
+                                className="px-4 py-2 bg-[#2A2A2A] text-gray-400 border border-gray-700 font-bold rounded-lg hover:bg-[#121212] focus:ring focus:ring-gray-500 transition-colors"
                             >
                                 Close
                             </button>
                             <div className="flex gap-3">
                                 <button
                                     onClick={() => handleEdit(selectedProduct)}
-                                    className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold flex items-center gap-2"
+                                    className="px-6 py-2 bg-[#2A2A2A] text-gray-400 rounded-lg hover:bg-[#121212] hover:text-blue-400 focus:ring focus:ring-gray-500 transition-colors font-semibold flex items-center gap-2"
                                 >
-                                    ✏️ Edit
+                                    <span className="text-gray-400 hover:text-blue-400">✏️</span> Edit
                                 </button>
                                 <button
                                     onClick={() => handleDelete(selectedProduct)}
-                                    className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold flex items-center gap-2"
+                                    className="px-6 py-2 bg-[#2A2A2A] text-gray-400 rounded-lg hover:bg-[#121212] hover:text-blue-400 focus:ring focus:ring-gray-500 transition-colors font-semibold flex items-center gap-2"
                                 >
-                                    🗑️ Delete
+                                    <span className="text-gray-400 hover:text-blue-400">🗑️</span> Delete
                                 </button>
                             </div>
                         </div>

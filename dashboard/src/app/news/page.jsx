@@ -88,10 +88,10 @@ export default function Newspage() {
     });
 
     return (
-        <div className="max-w-5xl mx-auto p-6 font-sans bg-gray-900 min-h-screen text-gray-300">
+        <div className="max-w-5xl mx-auto p-6 font-sans min-h-screen text-gray-300" style={{ backgroundColor: '#121212' }}>
             {/* Header */}
             <header className="text-center mb-10">
-                <h1 className="text-4xl font-extrabold mb-2 text-white tracking-tight">
+                <h1 className="text-4xl font-extrabold mb-2 text-gray-300 tracking-tight">
                     HealthTargetParapharmacetica News & Updates
                 </h1>
                 <p className="text-gray-400 text-lg">
@@ -107,7 +107,8 @@ export default function Newspage() {
                     placeholder="Search news..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-700 bg-gray-800 shadow-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-700 text-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    style={{ backgroundColor: '#2A2A2A' }}
                 />
             </div>
 
@@ -116,12 +117,12 @@ export default function Newspage() {
                 {categories.map((cat) => {
                     const isSelected = selectedCategory === cat;
                     const baseColors = categoryColors[cat];
-                    // fallback for "All" or categories without color
-                    const bgClass = isSelected
+                    
+                    const bgStyle = isSelected
                         ? (baseColors
-                            ? baseColors.replace("bg-", "bg-opacity-40 bg-").split(" ")[1]
-                            : "bg-gray-700")
-                        : "bg-gray-800";
+                            ? { backgroundColor: '#2A2A2A', opacity: 0.8 }
+                            : { backgroundColor: '#2A2A2A' })
+                        : { backgroundColor: '#1E1E1E' };
 
                     const borderColor = isSelected
                         ? (baseColors ? baseColors.split(" ")[0] : "border-gray-600")
@@ -136,7 +137,14 @@ export default function Newspage() {
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
                             className={`px-5 py-2 rounded-full border font-semibold transition  
-                ${bgClass} ${borderColor} ${textColor} hover:bg-gray-700 hover:text-white`}
+                ${borderColor} ${textColor} hover:text-blue-400`}
+                            style={bgStyle}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = '#2A2A2A'}
+                            onMouseLeave={(e) => {
+                                if (!isSelected) {
+                                    e.target.style.backgroundColor = '#1E1E1E';
+                                }
+                            }}
                             aria-pressed={isSelected}
                         >
                             {cat}
@@ -150,18 +158,19 @@ export default function Newspage() {
                 <section
                     aria-label="Featured News"
                     className={`flex items-center gap-8 p-6 mb-10 rounded-lg shadow-lg border-l-8 ${categoryColors[featuredNews.category] || "border-gray-700"
-                        } bg-gray-800`}
+                        }`}
+                    style={{ backgroundColor: '#1E1E1E' }}
                 >
                     <div className="text-6xl" aria-hidden="true">
                         {featuredNews.icon}
                     </div>
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold mb-3 text-white">
+                        <h2 className="text-2xl font-bold mb-3 text-gray-300">
                             {featuredNews.title}
                         </h2>
                         <p className="text-gray-300 mb-5">{featuredNews.description}</p>
                         <Link href="/news/readmore">
-                            <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
+                            <button className="bg-blue-400 text-gray-300 px-5 py-2 rounded-full font-semibold hover:bg-blue-500 transition">
                                 Read more
                             </button>
                         </Link>
@@ -175,17 +184,18 @@ export default function Newspage() {
                     filteredNews.map((article) => (
                         <article
                             key={article.id}
-                            className={`flex gap-5 p-4 rounded-lg shadow-md items-start bg-gray-800 border-l-8 ${categoryColors[article.category] || "border-gray-700"
+                            className={`flex gap-5 p-4 rounded-lg shadow-md items-start border-l-8 ${categoryColors[article.category] || "border-gray-700"
                                 }`}
+                            style={{ backgroundColor: '#1E1E1E' }}
                         >
                             <div className="text-4xl flex-shrink-0 mt-1" aria-hidden="true">
                                 {article.icon}
                             </div>
                             <div className="flex flex-col w-full">
-                                <h3 className="font-bold text-xl mb-1 text-white">
+                                <h3 className="font-bold text-xl mb-1 text-gray-300">
                                     {article.title}
                                 </h3>
-                                <div className="text-gray-500 text-sm mb-2">
+                                <div className="text-gray-400 text-sm mb-2">
                                     🕒 {article.date}{" "}
                                     {article.author && (
                                         <>
@@ -195,7 +205,7 @@ export default function Newspage() {
                                 </div>
                                 <p className="text-gray-300 mb-3">{article.description}</p>
                                 <Link href="/news/readmore">
-                                    <button className="self-start bg-blue-600 text-white px-4 py-1.5 rounded-full font-semibold hover:bg-blue-700 transition">
+                                    <button className="self-start bg-blue-400 text-gray-300 px-4 py-1.5 rounded-full font-semibold hover:bg-blue-500 transition">
                                         Read more
                                     </button>
                                 </Link>
@@ -203,7 +213,7 @@ export default function Newspage() {
                         </article>
                     ))
                 ) : (
-                    <p className="text-center text-gray-500 text-lg mt-8">
+                    <p className="text-center text-gray-400 text-lg mt-8">
                         No articles found.
                     </p>
                 )}

@@ -11,7 +11,7 @@ export default function Home() {
       value: '340',
       icon: (
         <svg
-          className="w-7 h-7 text-blue-400"
+          className="w-7 h-7 text-gray-400 group-hover:text-blue-400 transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -24,7 +24,6 @@ export default function Home() {
           <path d="M16 3v4M8 3v4M3 10h18" />
         </svg>
       ),
-      color: 'from-blue-800 to-blue-900',
       change: '+12',
       changeType: 'positive',
     },
@@ -34,7 +33,7 @@ export default function Home() {
       value: '12',
       icon: (
         <svg
-          className="w-7 h-7 text-green-400"
+          className="w-7 h-7 text-gray-400 group-hover:text-blue-400 transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -49,7 +48,6 @@ export default function Home() {
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
       ),
-      color: 'from-green-800 to-green-900',
       change: '+3',
       changeType: 'positive',
     },
@@ -59,7 +57,7 @@ export default function Home() {
       value: '8',
       icon: (
         <svg
-          className="w-7 h-7 text-yellow-400"
+          className="w-7 h-7 text-gray-400 group-hover:text-blue-400 transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -72,7 +70,6 @@ export default function Home() {
           <circle cx="12" cy="12" r="9" />
         </svg>
       ),
-      color: 'from-yellow-800 to-yellow-900',
       change: '-2',
       changeType: 'negative',
     },
@@ -82,7 +79,7 @@ export default function Home() {
       value: '$2,450',
       icon: (
         <svg
-          className="w-7 h-7 text-purple-400"
+          className="w-7 h-7 text-gray-400 group-hover:text-blue-400 transition-colors"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -95,7 +92,6 @@ export default function Home() {
           <path d="M12 6v6l4 2" />
         </svg>
       ),
-      color: 'from-purple-800 to-purple-900',
       change: '+15%',
       changeType: 'positive',
     },
@@ -110,7 +106,7 @@ export default function Home() {
       urgent: true,
       icon: (
         <svg
-          className="w-7 h-7 text-red-400"
+          className="w-7 h-7 text-gray-400"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -131,7 +127,7 @@ export default function Home() {
       urgent: false,
       icon: (
         <svg
-          className="w-7 h-7 text-yellow-400"
+          className="w-7 h-7 text-gray-400"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -152,7 +148,7 @@ export default function Home() {
       urgent: false,
       icon: (
         <svg
-          className="w-7 h-7 text-blue-400"
+          className="w-7 h-7 text-gray-400"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -200,11 +196,11 @@ export default function Home() {
   const displayedStockAlerts = isStockExpanded ? stockAlerts : stockAlerts.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#121212] via-[#1a1a1a] to-[#121212]">
+    <div className="min-h-screen bg-[#121212] font-sans">
       <div className="max-w-7xl mx-auto p-6 sm:p-8 lg:p-10">
         {/* Header */}
         <div className="mb-8 text-center sm:text-left">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-3 select-none">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-300 mb-3 select-none">
             Dashboard Overview
           </h1>
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl">
@@ -217,21 +213,22 @@ export default function Home() {
           {keyMetrics.map((metric, index) => (
             <div
               key={metric.id}
-              className={`bg-gradient-to-br ${metric.color} rounded-2xl p-7 text-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 animate-fade-in`}
+              className="group bg-[#1E1E1E] hover:bg-[#2A2A2A] rounded-2xl p-7 border border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-fade-in focus:outline-none focus:ring-2 focus:ring-gray-500"
               style={{ animationDelay: `${index * 120}ms` }}
+              tabIndex={0}
             >
               <div className="flex items-center justify-between mb-5">
                 <div className="text-3xl">{metric.icon}</div>
                 <div
                   className={`text-sm font-semibold px-3 py-1 rounded-full select-none ${
-                    metric.changeType === 'positive' ? 'bg-green-600' : 'bg-red-600'
+                    metric.changeType === 'positive' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
                   }`}
                 >
                   {metric.change}
                 </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold mb-1">{metric.value}</h3>
-              <p className="text-blue-200 text-sm opacity-90">{metric.title}</p>
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-1 text-gray-300">{metric.value}</h3>
+              <p className="text-gray-400 text-sm opacity-90">{metric.title}</p>
             </div>
           ))}
         </div>
@@ -240,11 +237,11 @@ export default function Home() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-10">
           {/* Recent News Section */}
           <div className="xl:col-span-2">
-            <div className="bg-[#1E1E1E]/70 backdrop-blur-sm rounded-3xl p-8 border border-gray-800 shadow-2xl">
+            <div className="bg-[#1E1E1E] rounded-3xl p-8 border border-gray-700 shadow-2xl">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-5">
-                <h2 className="text-2xl font-bold text-white flex items-center gap-3 select-none">
+                <h2 className="text-2xl font-bold text-gray-300 flex items-center gap-3 select-none">
                   <svg
-                    className="w-6 h-6 text-blue-400 flex-shrink-0"
+                    className="w-6 h-6 text-gray-400 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -262,7 +259,7 @@ export default function Home() {
                 </h2>
                 <a
                   href="/news"
-                  className="text-blue-400 hover:text-blue-300 font-medium text-sm flex items-center gap-2 self-start sm:self-auto hover:bg-blue-900/20 px-3 py-2 rounded-xl transition-all select-none"
+                  className="text-gray-400 hover:text-blue-400 font-medium text-sm flex items-center gap-2 self-start sm:self-auto hover:bg-[#2A2A2A] px-3 py-2 rounded-xl transition-all select-none focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   View All News
                   <svg
@@ -284,16 +281,16 @@ export default function Home() {
                 {recentNews.map((news, index) => (
                   <div
                     key={news.id}
-                    className={`flex items-start space-x-5 p-5 rounded-2xl border transition-all duration-250 hover:scale-[1.02] cursor-pointer ${
+                    className={`flex items-start space-x-5 p-5 rounded-2xl border transition-all duration-250 hover:scale-[1.02] cursor-pointer hover:bg-[#2A2A2A] ${
                       news.urgent
-                        ? 'border-red-600/40 bg-red-900/20 hover:bg-red-900/30'
-                        : 'border-gray-700/40 bg-gray-800/25 hover:bg-gray-800/40'
+                        ? 'border-red-600/40 bg-red-900/20'
+                        : 'border-gray-700 bg-[#1E1E1E]/50'
                     }`}
                     style={{ animationDelay: `${index * 160}ms` }}
                   >
                     <div className="text-2xl flex-shrink-0 select-none">{news.icon}</div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-white mb-2 line-clamp-2 hover:text-blue-400 transition-colors select-text">
+                      <h3 className="font-semibold text-gray-300 mb-2 line-clamp-2 hover:text-blue-400 transition-colors select-text">
                         {news.title}
                       </h3>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
@@ -317,10 +314,10 @@ export default function Home() {
 
           {/* Quick Actions */}
           <div className="xl:col-span-1">
-            <div className="bg-[#1E1E1E]/70 backdrop-blur-sm rounded-3xl p-8 border border-gray-800 shadow-2xl">
-              <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 select-none">
+            <div className="bg-[#1E1E1E] rounded-3xl p-8 border border-gray-700 shadow-2xl">
+              <h2 className="text-2xl font-bold text-gray-300 mb-8 flex items-center gap-3 select-none">
                 <svg
-                  className="w-6 h-6 text-yellow-400 flex-shrink-0"
+                  className="w-6 h-6 text-gray-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
@@ -337,10 +334,10 @@ export default function Home() {
               <div className="space-y-5">
                 <a
                   href="/products/addnew"
-                  className="w-full bg-gradient-to-r from-blue-800 to-blue-900 text-white py-4 px-6 rounded-3xl font-semibold hover:from-blue-900 hover:to-blue-950 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none"
+                  className="w-full bg-[#2A2A2A] text-gray-400 py-4 px-6 rounded-3xl font-semibold hover:text-blue-400 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -355,10 +352,10 @@ export default function Home() {
                 </a>
                 <a
                   href="/news/addnews"
-                  className="w-full bg-gradient-to-r from-green-800 to-green-900 text-white py-4 px-6 rounded-3xl font-semibold hover:from-green-900 hover:to-green-950 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none"
+                  className="w-full bg-[#2A2A2A] text-gray-400 py-4 px-6 rounded-3xl font-semibold hover:text-blue-400 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -373,11 +370,11 @@ export default function Home() {
                 </a>
                 <button
                   onClick={() => alert('This Page requires backend, coming soon!')}
-                  className="w-full bg-gradient-to-r from-purple-800 to-purple-900 text-white py-4 px-6 rounded-3xl font-semibold hover:from-purple-900 hover:to-purple-950 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none"
+                  className="w-full bg-[#2A2A2A] text-gray-400 py-4 px-6 rounded-3xl font-semibold hover:text-blue-400 transition-all duration-250 flex items-center justify-center gap-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 select-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   type="button"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -397,11 +394,11 @@ export default function Home() {
 
         {/* Stock Alerts Section */}
         <div className="mt-10">
-          <div className="bg-[#1E1E1E]/70 backdrop-blur-sm rounded-3xl p-8 border border-gray-800 shadow-2xl">
+          <div className="bg-[#1E1E1E] rounded-3xl p-8 border border-gray-700 shadow-2xl">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3 select-none">
+              <h2 className="text-2xl font-bold text-gray-300 flex items-center gap-3 select-none">
                 <svg
-                  className="w-6 h-6 text-red-500 flex-shrink-0"
+                  className="w-6 h-6 text-gray-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
@@ -418,13 +415,13 @@ export default function Home() {
                 <span className="text-sm text-gray-400 select-none">Products at Risk</span>
                 <button
                   onClick={() => setIsStockExpanded(!isStockExpanded)}
-                  className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center gap-2 hover:bg-blue-900/25 px-3 py-2 rounded-lg transition-all select-none"
+                  className="text-gray-400 hover:text-blue-400 text-sm font-medium flex items-center gap-2 hover:bg-[#2A2A2A] px-3 py-2 rounded-lg transition-all select-none focus:outline-none focus:ring-2 focus:ring-gray-500"
                   type="button"
                   aria-expanded={isStockExpanded}
                 >
                   {isStockExpanded ? 'Show Less' : 'Show All'}
                   <svg
-                    className={`w-4 h-4 transition-transform ${isStockExpanded ? 'rotate-180' : ''}`}
+                    className={`w-4 h-4 text-gray-400 transition-transform ${isStockExpanded ? 'rotate-180' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -444,10 +441,10 @@ export default function Home() {
               {displayedStockAlerts.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-gray-700/40 rounded-3xl p-5 border border-gray-600/40"
+                  className="bg-[#2A2A2A] rounded-3xl p-5 border border-gray-700"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="font-semibold text-white text-base select-text">{product.name}</h3>
+                    <h3 className="font-semibold text-gray-300 text-base select-text">{product.name}</h3>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold border select-none ${getStockStatusColor(
                         product.status
@@ -476,7 +473,7 @@ export default function Home() {
                       <span className="text-gray-300">{product.threshold}</span>
                     </div>
                   </div>
-                  <button className="w-full bg-blue-700 text-white py-3 px-5 rounded-3xl text-sm font-semibold hover:bg-blue-800 transition-colors select-none">
+                  <button className="w-full bg-[#2A2A2A] text-gray-400 py-3 px-5 rounded-3xl text-sm font-semibold hover:text-blue-400 transition-colors select-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                     Restock
                   </button>
                 </div>
@@ -488,19 +485,19 @@ export default function Home() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-700">
-                    <th className="text-left py-5 px-6 font-semibold text-gray-300 text-sm uppercase tracking-wide select-none">
+                    <th className="text-left py-5 px-6 font-semibold text-gray-400 text-sm uppercase tracking-wide select-none">
                       Product Name
                     </th>
-                    <th className="text-left py-5 px-6 font-semibold text-gray-300 text-sm uppercase tracking-wide select-none">
+                    <th className="text-left py-5 px-6 font-semibold text-gray-400 text-sm uppercase tracking-wide select-none">
                       Current Stock
                     </th>
-                    <th className="text-left py-5 px-6 font-semibold text-gray-300 text-sm uppercase tracking-wide select-none">
+                    <th className="text-left py-5 px-6 font-semibold text-gray-400 text-sm uppercase tracking-wide select-none">
                       Threshold
                     </th>
-                    <th className="text-left py-5 px-6 font-semibold text-gray-300 text-sm uppercase tracking-wide select-none">
+                    <th className="text-left py-5 px-6 font-semibold text-gray-400 text-sm uppercase tracking-wide select-none">
                       Status
                     </th>
-                    <th className="text-left py-5 px-6 font-semibold text-gray-300 text-sm uppercase tracking-wide select-none">
+                    <th className="text-left py-5 px-6 font-semibold text-gray-400 text-sm uppercase tracking-wide select-none">
                       Action
                     </th>
                   </tr>
@@ -509,10 +506,10 @@ export default function Home() {
                   {displayedStockAlerts.map((product, index) => (
                     <tr
                       key={product.id}
-                      className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors duration-200"
+                      className="border-b border-gray-700 hover:bg-[#2A2A2A] transition-colors duration-200"
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      <td className="py-5 px-6 font-medium text-white select-text">{product.name}</td>
+                      <td className="py-5 px-6 font-medium text-gray-300 select-text">{product.name}</td>
                       <td className="py-5 px-6">
                         <div className="flex items-center gap-3">
                           <span
@@ -540,7 +537,7 @@ export default function Home() {
                         </span>
                       </td>
                       <td className="py-5 px-6">
-                        <button className="bg-blue-700 text-white px-6 py-2 rounded-2xl text-sm font-semibold hover:bg-blue-800 transition-shadow duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 select-none">
+                        <button className="bg-[#2A2A2A] text-gray-400 px-6 py-2 rounded-2xl text-sm font-semibold hover:text-blue-400 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 select-none border border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                           Restock
                         </button>
                       </td>
@@ -564,7 +561,7 @@ export default function Home() {
                 >
                   <path d="M5 13l4 4L19 7" />
                 </svg>
-                <h3 className="text-xl font-semibold text-white mb-2">All Good!</h3>
+                <h3 className="text-xl font-semibold text-gray-300 mb-2">All Good!</h3>
                 <p className="text-gray-400">No stock alerts - everything is well stocked!</p>
               </div>
             )}

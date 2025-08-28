@@ -1,10 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ProductsPage() {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const searchParams = useSearchParams();
+    const selectedSubsite = searchParams.get("subsite");
+
+    const filteredProducts = products.filter((p) => {
+        if (!selectedSubsite || selectedSubsite === "") return true; // show all if none selected
+        // Normalize the values to lowercase for safe comparison
+        return p.subsite.toLowerCase() === selectedSubsite.toLowerCase();
+    });
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedProduct(null);
@@ -19,6 +29,7 @@ export default function ProductsPage() {
             category: "Diagnostics",
             description:
                 "Accurate and fast-reading thermometer suitable for home and clinical use.",
+            subsite: "Pharmacy",
         },
         {
             id: 2,
@@ -28,6 +39,7 @@ export default function ProductsPage() {
             category: "Diagnostics",
             description:
                 "Automatic upper-arm blood pressure monitor with memory storage for 90 readings.",
+            subsite: "Pharmacy",
         },
         {
             id: 3,
@@ -37,6 +49,7 @@ export default function ProductsPage() {
             category: "Emergency",
             description:
                 "Portable first aid kit with bandages, antiseptic wipes, scissors, and more.",
+            subsite: "Pharmacy",
         },
         {
             id: 4,
@@ -46,6 +59,7 @@ export default function ProductsPage() {
             category: "Protective Equipment",
             description:
                 "Disposable 3-ply masks designed for safe and hygienic use in healthcare settings.",
+            subsite: "Pharmacy",
         },
         {
             id: 5,
@@ -54,6 +68,7 @@ export default function ProductsPage() {
             stock: 0,
             category: "Protective Equipment",
             description: "Alcohol-based hand sanitizer that kills 99.9% of germs.",
+            subsite: "Wellness and Personal Care",
         },
         {
             id: 6,
@@ -63,6 +78,7 @@ export default function ProductsPage() {
             category: "Mobility",
             description:
                 "Lightweight foldable wheelchair designed for comfort and easy transport.",
+            subsite: "Medical Equipment",
         },
         {
             id: 7,
@@ -71,6 +87,7 @@ export default function ProductsPage() {
             stock: 40,
             category: "Diabetes Care",
             description: "Complete glucose testing kit with strips and lancets included.",
+            subsite: "Pharmacy",
         },
         {
             id: 8,
@@ -80,6 +97,27 @@ export default function ProductsPage() {
             category: "Respiratory Care",
             description:
                 "Compact and efficient nebulizer for asthma and other respiratory treatments.",
+            subsite: "Medical Equipment",
+        },
+        {
+            id: 9,
+            name: "Electric Massager",
+            price: "$75.00",
+            stock: 50,
+            category: "Wellness",
+            description:
+                "Handheld electric massager for muscle relaxation and pain relief.",
+            subsite: "Wellness and Personal Care",
+        },
+        {
+            id: 10,
+            name: "Pulse Oximeter",
+            price: "$39.99",
+            stock: 90,
+            category: "Diagnostics",
+            description:
+                "Non-invasive pulse oximeter for measuring oxygen saturation and pulse rate.",
+            subsite: "Pharmacy",
         },
     ];
 
@@ -176,16 +214,7 @@ export default function ProductsPage() {
             {isModalOpen && selectedProduct && (
                 <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
                     <div className="bg-gray-900 rounded-lg max-w-2xl w-full max-h-[100vh] overflow-y-auto shadow-2xl border border-gray-700">
-                        <div className="flex items-center justify-between p-6 border-b border-gray-700">
-                            <h2 className="text-2xl font-bold text-white">Product Details</h2>
-                            <button
-                                onClick={closeModal}
-                                className="text-gray-400 hover:text-gray-200 text-3xl font-bold transition-colors"
-                                title="Close"
-                            >
-                                ×
-                            </button>
-                        </div>
+
 
                         <div className="p-6">
                             <div className="grid md:grid-cols-2 gap-6">
@@ -239,6 +268,12 @@ export default function ProductsPage() {
                                             <p className="font-semibold">{selectedProduct.stock} units</p>
                                         </div>
                                         <div>
+                                            <label className="block text-sm font-medium mb-1">
+                                                Sub Site
+                                            </label>
+                                            <p className="font-semibold">{selectedProduct.subsite}</p>
+                                        </div>
+                                        <div>
                                             <label className="block text-sm font-medium mb-1">Category</label>
                                             <p className="font-semibold">{selectedProduct.category}</p>
                                         </div>
@@ -255,6 +290,12 @@ export default function ProductsPage() {
                         </div>
 
                         <div className="flex items-center justify-between p-6 border-t border-gray-700 bg-gray-800 rounded-b-lg">
+                            <button
+                                onClick={closeModal}
+                                className="px-4 py-2 bg-gray-600 text-white border border-gray-600 font-bold rounded-lg hover:bg-gray-800 transition-colors"
+                            >
+                                Close
+                            </button>
                             <div className="flex gap-3">
                                 <button
                                     onClick={() => handleEdit(selectedProduct)}

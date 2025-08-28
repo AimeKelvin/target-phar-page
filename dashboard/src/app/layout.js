@@ -1,12 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Changed from "next/router"
 import "./globals.css";
 
-export const metadata = {
-  title: "Dashboard",
-  description: "Next.js Dashboard Project",
-};
-
 export default function RootLayout({ children }) {
+  const router = useRouter(); // Moved inside component
+
+  const handleFilterChange = (e) => { // Added 'e' parameter
+    const value = e.target.value;
+    if (value) {
+      alert('Filtering products by subsite: ' + value.split('=')[1]);
+      router.push(value);
+    }
+  };
+
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-gray-900 text-gray-100 font-sans">
@@ -28,14 +36,17 @@ export default function RootLayout({ children }) {
               </Link>
             </nav>
             <select
-              className="w-full rounded-lg bg-gray-700 text-gray-300 px-4 py-2 p-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onChange={handleFilterChange}
+              defaultValue=""
+              className="w-full rounded-lg bg-gray-700 text-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
-              <option>All</option>
-              <option>Pharmacy</option>
-              <option>Medical Equipment</option>
-              <option>Wellness & Personal Care</option>
+              <option value="">All</option>
+              <option value="/products?subsite=pharmacy">Pharmacy</option>
+              <option value="/products?subsite=medical-equipment">Medical Equipment</option>
+              <option value="/products?subsite=wellness-personal-care">Wellness & Personal Care</option>
             </select>
           </aside>
+          
           {/* Mobile Sidebar */}
           <aside className="md:hidden fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 text-gray-300 p-3 flex justify-around items-center shadow-inner z-50">
             {[
@@ -44,18 +55,16 @@ export default function RootLayout({ children }) {
               { href: "/products", icon: "💊", label: "Products" }
             ].map(({ href, icon, label }) => (
               <Link key={href} href={href} className="flex flex-col items-center text-sm px-3 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
-                <p >
-                  <span className="text-2xl">{icon}</span>
-                  <span>{label}</span>
-                </p>
+                <span className="text-2xl">{icon}</span>
+                <span>{label}</span>
               </Link>
             ))}
           </aside>
 
           {/* Main Content */}
           <main
-            className="flex-1 p-6 md:p-12 bg-gray-900"
-            style={{ minHeight: "100vh", paddingBottom: "64px" }}
+            className="flex-1 p-6 md:p-12 bg-gray-900 pb-16 md:pb-6"
+            style={{ minHeight: "100vh" }}
           >
             {children}
           </main>

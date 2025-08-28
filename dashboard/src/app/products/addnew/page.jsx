@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 function Page({ onSubmit }) {
     const [formData, setFormData] = useState({
-        id: "",
+        desc: "",
         name: "",
         subsite: "",
         category: "",
@@ -35,7 +35,7 @@ function Page({ onSubmit }) {
         }
         if (onSubmit) onSubmit(formData);
         setFormData({
-            id: "",
+            desc: "",
             name: "",
             subsite: "",
             category: "",
@@ -58,14 +58,14 @@ function Page({ onSubmit }) {
                 {/* Id */}
                 <div>
                     <label className="block mb-2 text-gray-300 font-semibold text-sm">
-                        Product ID
+                        Product Description
                     </label>
                     <input
-                        type="number"
-                        name="id"
-                        value={formData.id}
+                        type="text"
+                        name="desc"
+                        value={formData.desc}
                         onChange={handleChange}
-                        placeholder="e.g. 123"
+                        placeholder="Accurate and fast-reading..."
                         required
                         className="w-full rounded-lg bg-gray-900 border border-gray-700 px-4 py-3 text-gray-300 placeholder-gray-500 shadow-sm transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-600 focus:border-transparent"
                     />

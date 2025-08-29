@@ -50,7 +50,7 @@ const newsData = [
     },
     {
         id: 5,
-        title: "Pharmacy Hours Update for Holiday Season",
+        title: "HealthTargetParapharmacetica Hours Update for Holiday Season",
         date: "2025-08-10 08:00",
         author: "Admin",
         description:
@@ -61,16 +61,16 @@ const newsData = [
     },
 ];
 
-// Tailwind colors for categories
+// Tailwind colors for categories (updated for dark backgrounds)
 const categoryColors = {
-    "Health Alerts": "border-red-500 bg-red-50 text-red-700",
-    "Promotions": "border-green-500 bg-green-50 text-green-700",
-    "Health Tips": "border-blue-500 bg-blue-50 text-blue-700",
-    "New Products": "border-orange-500 bg-orange-50 text-orange-700",
-    "Announcements": "border-purple-500 bg-purple-50 text-purple-700",
+    "Health Alerts": "border-red-500 bg-red-900 text-red-400",
+    Promotions: "border-green-500 bg-green-900 text-green-400",
+    "Health Tips": "border-blue-500 bg-blue-900 text-blue-400",
+    "New Products": "border-orange-500 bg-orange-900 text-orange-400",
+    Announcements: "border-purple-500 bg-purple-900 text-purple-400",
 };
 
-export default function newspage() {
+export default function Newspage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -88,11 +88,13 @@ export default function newspage() {
     });
 
     return (
-        <div className="max-w-5xl mx-auto p-6 font-sans text-gray-900">
+        <div className="max-w-5xl mx-auto p-6 font-sans min-h-screen text-gray-300" style={{ backgroundColor: '#121212' }}>
             {/* Header */}
             <header className="text-center mb-10">
-                <h1 className="text-4xl text-gray-400 font-extrabold mb-2">Pharmacy News & Updates</h1>
-                <p className="text-gray-500 text-lg">
+                <h1 className="text-4xl font-extrabold mb-2 text-gray-300 tracking-tight">
+                    HealthTargetParapharmacetica News & Updates
+                </h1>
+                <p className="text-gray-400 text-lg">
                     Latest announcements, promotions, and health alerts for our customers.
                 </p>
             </header>
@@ -105,45 +107,72 @@ export default function newspage() {
                     placeholder="Search news..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400"
+                    className="w-full max-w-md px-4 py-2 rounded-full border border-gray-700 text-gray-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    style={{ backgroundColor: '#2A2A2A' }}
                 />
             </div>
 
             {/* Category Filters */}
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-                {categories.map((cat) => (
-                    <button
-                        key={cat}
-                        onClick={() => setSelectedCategory(cat)}
-                        className={`px-5 py-2 rounded-full border font-semibold transition 
-                ${selectedCategory === cat
-                                ? categoryColors[cat]?.replace("bg-", "bg-opacity-40 bg-") || "bg-gray-300"
-                                : "bg-white border-gray-300 text-gray-700 hover:bg-gray-100"
-                            }`}
-                        aria-pressed={selectedCategory === cat}
-                    >
-                        {cat}
-                    </button>
-                ))}
+                {categories.map((cat) => {
+                    const isSelected = selectedCategory === cat;
+                    const baseColors = categoryColors[cat];
+                    
+                    const bgStyle = isSelected
+                        ? (baseColors
+                            ? { backgroundColor: '#2A2A2A', opacity: 0.8 }
+                            : { backgroundColor: '#2A2A2A' })
+                        : { backgroundColor: '#1E1E1E' };
+
+                    const borderColor = isSelected
+                        ? (baseColors ? baseColors.split(" ")[0] : "border-gray-600")
+                        : "border-gray-700";
+
+                    const textColor = isSelected
+                        ? (baseColors ? baseColors.split(" ")[2] : "text-gray-300")
+                        : "text-gray-400";
+
+                    return (
+                        <button
+                            key={cat}
+                            onClick={() => setSelectedCategory(cat)}
+                            className={`px-5 py-2 rounded-full border font-semibold transition  
+                ${borderColor} ${textColor} hover:text-blue-400`}
+                            style={bgStyle}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = '#2A2A2A'}
+                            onMouseLeave={(e) => {
+                                if (!isSelected) {
+                                    e.target.style.backgroundColor = '#1E1E1E';
+                                }
+                            }}
+                            aria-pressed={isSelected}
+                        >
+                            {cat}
+                        </button>
+                    );
+                })}
             </div>
 
             {/* Featured News */}
             {featuredNews && (
                 <section
                     aria-label="Featured News"
-                    className={`flex items-center gap-8 p-6 mb-10 rounded-lg shadow-lg border-l-8 ${categoryColors[featuredNews.category] || "border-gray-800"
-                        } bg-white`}
+                    className={`flex items-center gap-8 p-6 mb-10 rounded-lg shadow-lg border-l-8 ${categoryColors[featuredNews.category] || "border-gray-700"
+                        }`}
+                    style={{ backgroundColor: '#1E1E1E' }}
                 >
                     <div className="text-6xl" aria-hidden="true">
                         {featuredNews.icon}
                     </div>
                     <div className="max-w-3xl">
-                        <h2 className="text-2xl font-bold mb-3">{featuredNews.title}</h2>
-                        <p className="text-gray-700 mb-5">{featuredNews.description}</p>
-                        <Link href='/news/readmore'>
-                        <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
-                            Read more
-                        </button>
+                        <h2 className="text-2xl font-bold mb-3 text-gray-300">
+                            {featuredNews.title}
+                        </h2>
+                        <p className="text-gray-300 mb-5">{featuredNews.description}</p>
+                        <Link href="/news/readmore">
+                            <button className="bg-blue-400 text-gray-300 px-5 py-2 rounded-full font-semibold hover:bg-blue-500 transition">
+                                Read more
+                            </button>
                         </Link>
                     </div>
                 </section>
@@ -155,28 +184,38 @@ export default function newspage() {
                     filteredNews.map((article) => (
                         <article
                             key={article.id}
-                            className={`flex gap-5 p-4 rounded-lg shadow-md border-l-6 items-start bg-white ${categoryColors[article.category] || "border-gray-300"
-                                } border-l-8`}
+                            className={`flex gap-5 p-4 rounded-lg shadow-md items-start border-l-8 ${categoryColors[article.category] || "border-gray-700"
+                                }`}
+                            style={{ backgroundColor: '#1E1E1E' }}
                         >
                             <div className="text-4xl flex-shrink-0 mt-1" aria-hidden="true">
                                 {article.icon}
                             </div>
                             <div className="flex flex-col w-full">
-                                <h3 className="font-bold text-xl mb-1">{article.title}</h3>
-                                <div className="text-gray-500 text-sm mb-2">
-                                    🕒 {article.date} {article.author && <>| ✍ {article.author}</>}
+                                <h3 className="font-bold text-xl mb-1 text-gray-300">
+                                    {article.title}
+                                </h3>
+                                <div className="text-gray-400 text-sm mb-2">
+                                    🕒 {article.date}{" "}
+                                    {article.author && (
+                                        <>
+                                            | ✍ {article.author}
+                                        </>
+                                    )}
                                 </div>
-                                <p className="text-gray-700 mb-3">{article.description}</p>
-                                <Link href='/news/readmore'>
-                                <button className="self-start bg-blue-600 text-white px-4 py-1.5 rounded-full font-semibold hover:bg-blue-700 transition">
-                                    Read more
-                                </button>
+                                <p className="text-gray-300 mb-3">{article.description}</p>
+                                <Link href="/news/readmore">
+                                    <button className="self-start bg-blue-400 text-gray-300 px-4 py-1.5 rounded-full font-semibold hover:bg-blue-500 transition">
+                                        Read more
+                                    </button>
                                 </Link>
                             </div>
                         </article>
                     ))
                 ) : (
-                    <p className="text-center text-gray-500 text-lg mt-8">No articles found.</p>
+                    <p className="text-center text-gray-400 text-lg mt-8">
+                        No articles found.
+                    </p>
                 )}
             </section>
         </div>
